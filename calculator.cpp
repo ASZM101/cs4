@@ -1,15 +1,16 @@
-// Standard library headers
+// standard library headers
 #include <format>
 #include <iostream>
+#include <sstream>
 #include <string>
 
-// Func declarations (both actual def AND prototype MUST match)
+// func declarations (both actual def AND prototype MUST match)
 void handleMenu(std::string input);
 void convertNote();
 void calcDurations();
 void analyzeRhythm();
 
-// Display menu options
+// display menu options
 int main() {
     std::string input = "";
     std::cout << "Welcome to the Music Calculator!\n";
@@ -19,7 +20,7 @@ int main() {
 [2] Calculate note durations
 [3] Analyze metronome consistency
 [4] Exit
-Selected option: )";
+Selected option (ie. 1, 2, 3, 4): )";
         std::cout << std::format("\n{}", menu);
         std::cin >> input;
         handleMenu(input);
@@ -28,7 +29,7 @@ Selected option: )";
     return 0;
 }
 
-// Execute selected menu option based on input
+// execute selected menu option based on input
 void handleMenu(std::string input) {
     if (input == "1") {
         convertNote();
@@ -41,17 +42,25 @@ void handleMenu(std::string input) {
     }
 }
 
-// Convert given note name to its corresponding frequency
+// [1] convert given note to its corresponding frequency based on its semitone distance from A4
 void convertNote() {
-    std::cout << "Convert note mode selected.\n";
+    std::string nIn = ""; // semitones above A4
+    std::cout << "Semitone distance from A4 (ex. + 3 = C5, - 4 = F4): "; // the note C5 is 3 half-steps above A4 (reference note), F4 is 4 half-steps below A4
+    std::cin >> nIn;
+    std::stringstream nStream(nIn); // store input nIn into stream nStream
+    std::string nTemp; // stores temp char from nStream
+    while (std::getline(nStream, nTemp, ' ')) { // getline(input_stream, store_str, delim) [delim is optional, default is '\n']
+        std::cout << nTemp << std::endl;
+    }
+    // f = 440 * 2^(n-69)/12 (69 = MIDI note # for A4, n = semitones above A4)
 }
 
-// Calculate durations of various note values given BPM + beats per measure
+// [2] calculate durations of various note values given BPM + beats per measure
 void calcDurations() {
     std::cout << "Calculate durations mode selected.\n";
 }
 
-// Analyze average error of given metronome offsets
+// [3] analyze average error of given metronome offsets
 void analyzeRhythm() {
     std::cout << "Analyze rhythm mode selected.\n";
 }
