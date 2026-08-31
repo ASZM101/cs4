@@ -149,7 +149,7 @@ void analyzeRhythm() {
     }
     double avgError = sum / totalReps; // calculate average error (standard deviation from metronome clicks)
     std::string rating = "";
-    if (avgError < 10) { // assigns consistency rating based on approx thresholds for average error
+    if (avgError < 10) { // assign consistency rating based on approx thresholds for average error
         rating = "Professional";
     } else if (avgError >= 10 && avgError <= 25) {
         rating = "Steady";
