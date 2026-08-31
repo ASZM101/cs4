@@ -45,7 +45,6 @@ void handleMenu(std::string input) {
 // [1] convert given note to its corresponding frequency based on its semitone distance from A4 (reference note)
 void convertNote() {
     std::string distance = ""; // semitones above/below A4
-    std::string sign = ""; // "+" = above A4, "-" = below A4
     int n = 0; // value used in calculation
     std::string errorMsg = "Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
     bool error = false;
@@ -55,9 +54,8 @@ void convertNote() {
         if (distance.length() < 2) {
             std::cout << std::format("{}\n", errorMsg);
         } else {
-            sign = distance.at(0); // extract sign from input
-            std::stringstream convert(distance.substr(1, distance.length() - 1)); // substr(index_1st_char, substr_len) [includes 1st char at given index]
-            if (convert >> n) { // try to convert str from stream to int
+            std::stringstream convert(distance);
+            if (convert >> n) { // try to convert str from stream to int (including sign)
                 std::cout << std::format("Success: {} + {} = {}\n", n, 1, (n+1));
                 error = false;
             } else {
