@@ -1,4 +1,5 @@
 // standard library headers
+#include <cmath>
 #include <format>
 #include <iostream>
 #include <sstream>
@@ -43,6 +44,7 @@ void handleMenu(std::string input) {
 }
 
 // [1] convert given note to its corresponding frequency based on its semitone distance from A4 (reference note)
+// check converted frequencies: https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies (MIDI note number for A4 is 69)
 void convertNote() {
     std::string distance = ""; // semitones above/below A4
     int n = 0; // value used in calculation
@@ -56,13 +58,12 @@ void convertNote() {
         } else {
             std::stringstream convert(distance);
             if (convert >> n) { // try to convert str from stream to int (including sign)
-                std::cout << std::format("Success: {} + {} = {}\n", n, 1, (n+1));
                 error = false;
+                std::cout << std::format("Distance: {} semitones | Converted frequency: {:.2f} Hz\n", distance, (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
             } else {
-                std::cout << std::format("{}\n", errorMsg);
                 error = true;
+                std::cout << std::format("{}\n", errorMsg);
             }
-            // f = 440 * 2^(n-69)/12 (69 = MIDI note # for A4, n = semitones above A4)
         }
     }
 }
