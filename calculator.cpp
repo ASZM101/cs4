@@ -59,7 +59,7 @@ void convertNote() {
             std::stringstream convert(distance);
             if (convert >> n) { // try to convert str from stream to int (including sign)
                 error = false;
-                std::cout << std::format("Distance: {} semitones | Converted frequency: {:.2f} Hz\n", distance, (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
+                std::cout << std::format("Distance: {}{} semitones | Converted frequency: {:.2f} Hz\n", n > 0 ? "+" : "-", std::abs(n), (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
             } else {
                 error = true;
                 std::cout << std::format("{}\n", errorMsg);
@@ -70,7 +70,37 @@ void convertNote() {
 
 // [2] calculate durations of various note values given BPM + beats per measure
 void calcDurations() {
-    std::cout << "Calculate durations mode selected.\n";
+    std::string input = "";
+    int bpm = 0; // beats per minute (# on metronome)
+    int beats = 0; // # of beats in one measure (top # in time signature)
+    std::cout << "Enter BPM (ex. 120): ";
+    std::cin >> input;
+    std::stringstream convert(input);
+    if (convert >> bpm) {
+        std::cout << std::format("Success: {} + {} = {}\n", bpm, 1, (bpm + 1));
+    } else {
+        std::cout << "Fail\n";
+    }
+    // std::string distance = ""; // semitones above/below A4
+    // int n = 0; // value used in calculation
+    // std::string errorMsg = "Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
+    // bool error = false;
+    // while (distance.length() < 2 || error) { // ensure at least 2 chars are provided (sign + num, though num could be > 1 digit)
+    //     std::cout << "Semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
+    //     std::cin >> distance;
+    //     if (distance.length() < 2) {
+    //         std::cout << std::format("{}\n", errorMsg);
+    //     } else {
+    //         std::stringstream convert(distance);
+    //         if (convert >> n) { // try to convert str from stream to int (including sign)
+    //             error = false;
+    //             std::cout << std::format("Distance: {} semitones | Converted frequency: {:.2f} Hz\n", distance, (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
+    //         } else {
+    //             error = true;
+    //             std::cout << std::format("{}\n", errorMsg);
+    //         }
+    //     }
+    // }
 }
 
 // [3] analyze average error of given metronome offsets
