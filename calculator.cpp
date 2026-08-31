@@ -11,22 +11,22 @@ void convertNote();
 void calcDurations();
 void analyzeRhythm();
 
-// display menu options
+// display menu options [=> used for outputs, (!) used for errors]
 int main() {
     std::string input = "";
     std::cout << "Welcome to the Music Calculator!\n";
     while (input != "4") {
         std::string menu = R"(Choose one of the following options:
 [1] Convert note to frequency
-[2] Calculate note durations
+[2] Calculate note durations (milliseconds)
 [3] Analyze metronome consistency
 [4] Exit
-Selected option (ie. 1, 2, 3, 4): )";
+Enter selected option (ie. 1, 2, 3, 4): )";
         std::cout << std::format("\n{}", menu);
         std::cin >> input;
         handleMenu(input);
     }
-    std::cout << "Thank you for using the Music Calculator!\n";
+    std::cout << "=> Thank you for using the Music Calculator!\n";
     return 0;
 }
 
@@ -38,8 +38,10 @@ void handleMenu(std::string input) {
         calcDurations();
     } else if (input == "3") {
         analyzeRhythm();
+    } else if (input == "4") {
+        return;
     } else {
-        std::cout << "Please only type 1, 2, 3, or 4 to select an option.\n";
+        std::cout << "(!) Please only type 1, 2, 3, or 4 to select an option.\n";
     }
 }
 
@@ -48,10 +50,10 @@ void handleMenu(std::string input) {
 void convertNote() {
     std::string distance = ""; // semitones above/below A4
     int n = 0; // value used in calculation
-    std::string errorMsg = "Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
+    std::string errorMsg = "(!) Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
     bool error = false;
     while (distance.length() < 2 || error) { // ensure at least 2 chars are provided (sign + num, though num could be > 1 digit)
-        std::cout << "Semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
+        std::cout << "Enter semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
         std::cin >> distance;
         if (distance.length() < 2) {
             std::cout << std::format("{}\n", errorMsg);
@@ -59,7 +61,7 @@ void convertNote() {
             std::stringstream convert(distance);
             if (convert >> n) { // try to convert str from stream to int (including sign)
                 error = false;
-                std::cout << std::format("Distance: {}{} semitones | Converted frequency: {:.2f} Hz\n", n > 0 ? "+" : "-", std::abs(n), (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
+                std::cout << std::format("=> Distance: {}{} semitones | Converted frequency: {:.2f} Hz\n", n > 0 ? "+" : "-", std::abs(n), (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
             } else {
                 error = true;
                 std::cout << std::format("{}\n", errorMsg);
@@ -68,39 +70,42 @@ void convertNote() {
     }
 }
 
-// [2] calculate durations of various note values given BPM + beats per measure
+// [2] calculate durations of various note values given beats per measure + beats per measure
 void calcDurations() {
     std::string input = "";
-    int bpm = 0; // beats per minute (# on metronome)
+    int tempo = 0; // beats per minute (# on metronome)
     int beats = 0; // # of beats in one measure (top # in time signature)
-    std::cout << "Enter BPM (ex. 120): ";
-    std::cin >> input;
-    std::stringstream convert(input);
-    if (convert >> bpm) {
-        std::cout << std::format("Success: {} + {} = {}\n", bpm, 1, (bpm + 1));
-    } else {
-        std::cout << "Fail\n";
+    std::string errorMsg = "(!) Please only type a positive integer."; // error msg displayed after invalid input
+    bool error = false;
+    while (input.length() < 1 || error) { // get input for beats per minute (tempo)
+        std::cout << "Enter beats per minute (ex. 120): ";
+        std::cin >> input;
+        std::stringstream convert(input);
+        if (convert >> tempo && tempo > 0) { // try to convert str from stream to int, ensure input is positive
+            error = false;
+        } else {
+            error = true;
+            std::cout << std::format("{}\n", errorMsg);
+        }
     }
-    // std::string distance = ""; // semitones above/below A4
-    // int n = 0; // value used in calculation
-    // std::string errorMsg = "Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
-    // bool error = false;
-    // while (distance.length() < 2 || error) { // ensure at least 2 chars are provided (sign + num, though num could be > 1 digit)
-    //     std::cout << "Semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
-    //     std::cin >> distance;
-    //     if (distance.length() < 2) {
-    //         std::cout << std::format("{}\n", errorMsg);
-    //     } else {
-    //         std::stringstream convert(distance);
-    //         if (convert >> n) { // try to convert str from stream to int (including sign)
-    //             error = false;
-    //             std::cout << std::format("Distance: {} semitones | Converted frequency: {:.2f} Hz\n", distance, (440 * std::pow(2, n / 12.0))); // f = 440 * 2^(n / 12.0) (n = semitones above A4; must have double in division to get double for answer)
-    //         } else {
-    //             error = true;
-    //             std::cout << std::format("{}\n", errorMsg);
-    //         }
-    //     }
-    // }
+    input = ""; // reset input for next while loop
+    while (input.length() < 1 || error) { // get input for beats per measure (beats)
+        std::cout << "Enter beats (quarter notes) per measure (ex. 4): ";
+        std::cin >> input;
+        std::stringstream convert(input);
+        if (convert >> beats && beats > 0) { // try to convert str from stream to int, ensure input is positive
+            error = false;
+        } else {
+            error = true;
+            std::cout << std::format("{}\n", errorMsg);
+        }
+    }
+    int msPerMin = 60000.0; // milliseconds per minute
+    std::cout << std::format("=> Duration of sixteenth note: {} ms\n", std::round((msPerMin / tempo / 4.0)));
+    std::cout << std::format("=> Duration of eighth note: {} ms\n", std::round((msPerMin / tempo / 2.0)));
+    std::cout << std::format("=> Duration of quarter note: {} ms\n", std::round((msPerMin / tempo)));
+    std::cout << std::format("=> Duration of half note: {} ms\n", std::round((msPerMin / tempo * 2.0)));
+    std::cout << std::format("=> Duration of full measure: {} ms\n", std::round((msPerMin / tempo * beats)));
 }
 
 // [3] analyze average error of given metronome offsets
