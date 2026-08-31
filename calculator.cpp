@@ -133,17 +133,30 @@ void analyzeRhythm() {
             std::cout << std::format("{}. Enter timing deviation in milliseconds (ex. +4 for 4 ms late, -15 for 15 ms early): ", (i + 1));
             std::cin >> input;
             std::stringstream convert(input);
-            int temp = 0;
+            double temp = 0; // reps vector accepts doubles
             if (convert >> temp) { // try to convert str from stream to int
                 error = false;
                 reps.push_back(temp);
             } else {
                 error = true;
-                std::cout << "(!) Please type the timing deviations in the following format: sign (+ for too late, - for too early) immediately followed by the milliseconds deviated from the metronome click (no spaces in between).\n";
+                std::cout << "(!) Please type one timing deviation at a time in the following format: sign (+ for too late, - for too early) immediately followed by the milliseconds deviated from the metronome click (no spaces in between).\n";
             }
         }
     }
-    for (double rep : reps) { // (testing) print each rep in vector
-        std::cout << rep << "\n";
+    double sum = 0;
+    for (double rep : reps) { // calculate sum of absolute offsets from metronome clicks
+        sum += std::abs(rep);
     }
+    double avgError = sum / totalReps; // calculate average error (standard deviation from metronome clicks)
+    std::string rating = "";
+    if (avgError < 10) { // assigns consistency rating based on approx thresholds for average error
+        rating = "Professional";
+    } else if (avgError >= 10 && avgError <= 25) {
+        rating = "Steady";
+    } else if (avgError >= 26 && avgError <= 50) {
+        rating = "Moderate";
+    } else if (avgError > 50) {
+        rating = "Inconsistent";
+    }
+    std::cout << std::format("=> Average offset: {:.2f} ms | Consistency rating: {}\n", avgError, rating); 
 }
