@@ -42,17 +42,31 @@ void handleMenu(std::string input) {
     }
 }
 
-// [1] convert given note to its corresponding frequency based on its semitone distance from A4
+// [1] convert given note to its corresponding frequency based on its semitone distance from A4 (reference note)
 void convertNote() {
-    std::string nIn = ""; // semitones above A4
-    std::cout << "Semitone distance from A4 (ex. + 3 = C5, - 4 = F4): "; // the note C5 is 3 half-steps above A4 (reference note), F4 is 4 half-steps below A4
-    std::cin >> nIn;
-    std::stringstream nStream(nIn); // store input nIn into stream nStream
-    std::string nTemp; // stores temp char from nStream
-    while (std::getline(nStream, nTemp, ' ')) { // getline(input_stream, store_str, delim) [delim is optional, default is '\n']
-        std::cout << nTemp << std::endl;
+    std::string distance = ""; // semitones above/below A4
+    std::string sign = ""; // "+" = above A4, "-" = below A4
+    int n = 0; // value used in calculation
+    std::string errorMsg = "Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
+    bool error = false;
+    while (distance.length() < 2 || error) { // ensure at least 2 chars are provided (sign + num, though num could be > 1 digit)
+        std::cout << "Semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
+        std::cin >> distance;
+        if (distance.length() < 2) {
+            std::cout << std::format("{}\n", errorMsg);
+        } else {
+            sign = distance.at(0); // extract sign from input
+            std::stringstream convert(distance.substr(1, distance.length() - 1)); // substr(index_1st_char, substr_len) [includes 1st char at given index]
+            if (convert >> n) { // try to convert str from stream to int
+                std::cout << std::format("Success: {} + {} = {}\n", n, 1, (n+1));
+                error = false;
+            } else {
+                std::cout << std::format("{}\n", errorMsg);
+                error = true;
+            }
+            // f = 440 * 2^(n-69)/12 (69 = MIDI note # for A4, n = semitones above A4)
+        }
     }
-    // f = 440 * 2^(n-69)/12 (69 = MIDI note # for A4, n = semitones above A4)
 }
 
 // [2] calculate durations of various note values given BPM + beats per measure
