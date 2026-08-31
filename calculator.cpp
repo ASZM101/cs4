@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 // func declarations (both actual def AND prototype MUST match)
 void handleMenu(std::string input);
@@ -52,10 +53,10 @@ void convertNote() {
     int n = 0; // value used in calculation
     std::string errorMsg = "(!) Please type the semitone distance from A4 in the following format: sign (+ for above A4, - for below A4) immediately followed by the number of half steps from A4 (no spaces in between)."; // error msg displayed after invalid input
     bool error = false;
-    while (distance.length() < 2 || error) { // ensure at least 2 chars are provided (sign + num, though num could be > 1 digit)
+    while (distance.length() < 1 || error) { // ensure at least 1 char is provided (num w/o sign = positive)
         std::cout << "Enter semitone distance from A4 (ex. +3 for C5, -4 for F4): "; // the note C5 is 3 half steps above A4, F4 is 4 half steps below A4
         std::cin >> distance;
-        if (distance.length() < 2) {
+        if (distance.length() < 1) {
             std::cout << std::format("{}\n", errorMsg);
         } else {
             std::stringstream convert(distance);
@@ -110,5 +111,39 @@ void calcDurations() {
 
 // [3] analyze average error of given metronome offsets
 void analyzeRhythm() {
-    std::cout << "Analyze rhythm mode selected.\n";
+    std::string input = "";
+    int totalReps = 0; // # of metronome practice reps
+    std::vector<double> reps; // log of millisecond timing deviations from metronome click
+    std::string errorMsg = ""; // error msg displayed after invalid input
+    bool error = false;
+    while (input.length() < 1 || error) { // get input for # of metronome practice reps (totalReps)
+        std::cout << "Enter the number of practice reps you want to log: ";
+        std::cin >> input;
+        std::stringstream convert(input);
+        if (convert >> totalReps && totalReps > 0) { // try to convert str from stream to int, ensure input is positive
+            error = false;
+        } else {
+            error = true;
+            std::cout << "(!) Please only type a positive integer.\n";
+        }
+    }
+    for (int i = 0; i < totalReps; ++i) { // get input for each timing deviation (rep in reps); ++i (pre-increment) is generally best practice (more memory-efficient for objects, no difference for integers)
+        input = ""; // reset input for next while loop
+        while (input.length() < 1 || error) {
+            std::cout << std::format("{}. Enter timing deviation in milliseconds (ex. +4 for 4 ms late, -15 for 15 ms early): ", (i + 1));
+            std::cin >> input;
+            std::stringstream convert(input);
+            int temp = 0;
+            if (convert >> temp) { // try to convert str from stream to int
+                error = false;
+                reps.push_back(temp);
+            } else {
+                error = true;
+                std::cout << "(!) Please type the timing deviations in the following format: sign (+ for too late, - for too early) immediately followed by the milliseconds deviated from the metronome click (no spaces in between).\n";
+            }
+        }
+    }
+    for (double rep : reps) { // (testing) print each rep in vector
+        std::cout << rep << "\n";
+    }
 }
