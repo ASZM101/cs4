@@ -9,6 +9,34 @@ void record();
 void evaluate();
 void save();
 
+// define class to store attributes and methods dealing with daily vitals
+class DailyVitals {
+    private:
+        std::string username;
+        int heartRate;
+        int stepCount;
+        bool medTaken;
+    public:
+        DailyVitals(std::string un, int hr, int sc, bool mt) {
+            username = un;
+            heartRate = hr;
+            stepCount = sc;
+            medTaken = mt;
+        }
+        std::string getUsername() {
+            return username;
+        }
+        int getHeartRate() {
+            return heartRate;
+        }
+        int getStepCount() {
+            return stepCount;
+        }
+        int getMedTaken() {
+            return medTaken;
+        }
+}; // need semicolon b/c class definition treated as declaration statement
+
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
     std::string input = "";
