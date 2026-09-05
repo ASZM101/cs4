@@ -118,6 +118,8 @@ std::string promptUsername(std::unordered_map<std::string, DailyVitals> &patient
         } else { // n: return to main menu
             return "";
         }
+    } else {
+        return username;
     }
 }
 
@@ -168,7 +170,7 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
             std::cout << std::format("{}\n", errorBool);
         }
     }
-    patients[username] = DailyVitals(username, heartRate, steps, medTaken); // add new patient to unordered map, update existing patient if already recorded vitals (as opposed to insert method, which does not insert / update item if already exists)
+    patients.insert_or_assign(username, DailyVitals(username, heartRate, steps, medTaken)); // add new patient to unordered map, update existing patient if already recorded vitals (as opposed to insert method, which does not insert / update item if already exists)
     std::cout << std::format("=> Vitals successfully recorded for {}.\n", username);
     return patients.at(username);
 }
