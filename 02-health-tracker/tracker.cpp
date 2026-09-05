@@ -14,13 +14,13 @@ class DailyVitals {
     private:
         std::string username;
         int heartRate;
-        int stepCount;
+        int steps;
         bool medTaken;
     public:
-        DailyVitals(std::string un, int hr, int sc, bool mt) {
+        DailyVitals(std::string un, int hr, int s, bool mt) {
             username = un;
             heartRate = hr;
-            stepCount = sc;
+            steps = s;
             medTaken = mt;
         }
         std::string getUsername() {
@@ -29,11 +29,33 @@ class DailyVitals {
         int getHeartRate() {
             return heartRate;
         }
-        int getStepCount() {
-            return stepCount;
+        int getSteps() {
+            return steps;
         }
         int getMedTaken() {
             return medTaken;
+        }
+        int compareHeartRate() { // normal resting heart rate for adults: 60-100 BPM (https://my.clevelandclinic.org/health/diagnostics/heart-rate) (maybe allow user to input additional factors in future, like age / exercise)
+            if (heartRate < 60) {
+                return -1; // below threshold
+            }
+            else if (heartRate >= 60 && heartRate <= 100) {
+                return 0; // within threshold
+            }
+            else {
+                return 1; // above threshold
+            }
+        }
+        int compareSteps() { // recommended goal for adults: 10,000 (https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity) (maybe allow user to input their own goal in future)
+            if (steps < 10000) {
+                return -1; // did not meet goal
+            }
+            else if (steps == 10000) {
+                return 0; // met goal
+            }
+            else {
+                return 1; // exceeded goal
+            }
         }
 }; // need semicolon b/c class definition treated as declaration statement
 
@@ -73,7 +95,14 @@ void handleMenu(std::string input) {
 
 // [1] record given health vitals (ask for input, store in vars)
 void record() {
-    std::cout << "Record mode selected.\n";
+    std::string input = "";
+    std::string username = "";
+    int heartRate = 0;
+    int steps = 0;
+    bool medTaken = false;
+    std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for int
+    std::string errorBool = "(!) Please only type either 1 (medication taken) or 0 (medication not taken)."; // error msg displayed after invalid input for bool
+    bool error = false;
 }
 
 // [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores / ratings)
