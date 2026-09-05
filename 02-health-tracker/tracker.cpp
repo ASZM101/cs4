@@ -57,7 +57,7 @@ class DailyVitals {
 
 // func declarations (both actual def AND prototype MUST match; pass patients to all funcs)
 void handleMenu(std::string input, std::unordered_map<std::string, DailyVitals> &patients);
-void record(std::unordered_map<std::string, DailyVitals> &patients);
+std::string record(std::unordered_map<std::string, DailyVitals> &patients);
 void evaluate(std::unordered_map<std::string, DailyVitals> &patients);
 void save(std::unordered_map<std::string, DailyVitals> &patients);
 
@@ -69,8 +69,8 @@ int main() {
     while (input != "4") {
         std::string menu = R"(Choose one of the following options:
 [1] Record today's vitals
-[2] Evaluate today's vitals
-[3] Save today's summary in log
+[2] Evaluate today's vitals (must record first)
+[3] Save today's summary in log (must evaluate first)
 [4] Exit
 Enter selected option (ie. 1, 2, 3, 4): )";
         std::cout << std::format("\n{}", menu);
@@ -97,7 +97,7 @@ void handleMenu(std::string input, std::unordered_map<std::string, DailyVitals> 
 }
 
 // [1] record given health vitals (ask for input, store in vars)
-void record(std::unordered_map<std::string, DailyVitals> &patients) {
+std::string record(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string input = "";
     std::string username = "";
     int heartRate = 0;
@@ -145,30 +145,64 @@ void record(std::unordered_map<std::string, DailyVitals> &patients) {
     }
     patients.insert({username, DailyVitals(username, heartRate, steps, medTaken)});
     std::cout << std::format("=> Vitals successfully recorded for {}.\n", username);
+    return username;
 }
 
 // [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores / ratings)
 void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
+    std::string input = "";
     std::string username = "";
-    std::cout << "Enter patient username (only for returning users): ";
+    std::cout << "Enter patient username (only for existing users): ";
     std::cin >> username;
-    DailyVitals patient = patients.at(username);
+    if (!patients.contains(username)) // check if user has recorded vitals yet
+    {
+        std::cout << "(!) It seems like you have not recorded your vitals for today yet.\n";
+        while (input != "y" && input != "n") { // prompt user to record vitals (y: call record func, n: return to main menu)
+            std::cout << "Would you like to record today's vitals first? (y/n): ";
+            std::cin >> input;
+            if (input != "y" && input != "n") { // ensure user only enters y or n
+                std::cout << "(!) Please only type y (to record vitals) or n (to return to the main menu).\n";
+            }
+        }
+        if (input == "y") { // y: record vitals
+            username = record(patients);
+        } else { // n: return to main menu
+            return;
+        }
+    }
+    DailyVitals patient = patients.at(username); // get patient object from unordered map using username returned from record func (no out_of_range exception thrown)
     std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
     std::cout << std::format("=> Step count: {}\n", patient.getSteps());
     std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
-    // WIP => username not found (unodered_map.at(key) throws out_of_range exception): ask user if they would like to create account and record today's vitals, call record func
-    // WIP => vitals not recorded: ask user if they would like to record today's vitals, call record func
 }
 
 // [3] save evaluation summary in log (append formatted values to log file, create log file if doesn't exist yet)
 void save(std::unordered_map<std::string, DailyVitals> &patients) {
+    std::string input = "";
     std::string username = "";
-    std::cout << "Enter patient username (only for returning users): ";
+    std::cout << "Enter patient username (only for existing users): ";
     std::cin >> username;
-    DailyVitals patient = patients.at(username);
+    if (!patients.contains(username)) // check if user has recorded vitals yet
+    {
+        std::cout << "(!) It seems like you have not recorded your vitals for today yet.\n";
+        while (input != "y" && input != "n") { // prompt user to record vitals (y: call record func, n: return to main menu)
+            std::cout << "Would you like to record today's vitals first? (y/n): ";
+            std::cin >> input;
+            if (input != "y" && input != "n") { // ensure user only enters y or n
+                std::cout << "(!) Please only type y (to record vitals) or n (to return to the main menu).\n";
+            }
+        }
+        if (input == "y") { // y: record vitals
+            username = record(patients);
+        } else { // n: return to main menu
+            return;
+        }
+    }
+    DailyVitals patient = patients.at(username); // get patient object from unordered map using username returned from record func (no out_of_range exception thrown)
     std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
     std::cout << std::format("=> Step count: {}\n", patient.getSteps());
     std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
-    // WIP => username not found (unodered_map.at(key) throws out_of_range exception): ask user if they would like to create account and record today's vitals, call record func
-    // WIP => vitals not recorded: ask user if they would like to record today's vitals, call record func
+    // WIP => analyze vitals behind the scenes
+    // WIP => create func for getting username for existing users (used in evaluate and save)
+    // WIP => create func for analyzing vitals behind the scenes (uesd in evaluate to print summary, used in save to export summary)
 }
