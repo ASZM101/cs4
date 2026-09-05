@@ -3,13 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
-
-// func declarations (both actual def AND prototype MUST match; pass patients vector to all funcs)
-void handleMenu(std::string input, std::vector<DailyVitals> &patients);
-void record(std::vector<DailyVitals> &patients);
-void evaluate(std::vector<DailyVitals> &patients);
-void save(std::vector<DailyVitals> &patients);
+#include <unordered_map>
 
 // define class to store attributes and methods dealing with daily vitals
 class DailyVitals {
@@ -34,7 +28,7 @@ class DailyVitals {
         int getSteps() {
             return steps;
         }
-        int getMedTaken() {
+        bool getMedTaken() {
             return medTaken;
         }
         int compareHeartRate() { // normal resting heart rate for adults: 60-100 BPM (https://my.clevelandclinic.org/health/diagnostics/heart-rate) (maybe allow user to input additional factors in future, like age / exercise)
@@ -61,9 +55,15 @@ class DailyVitals {
         }
 }; // need semicolon b/c class definition treated as declaration statement
 
+// func declarations (both actual def AND prototype MUST match; pass patients to all funcs)
+void handleMenu(std::string input, std::unordered_map<std::string, DailyVitals> &patients);
+void record(std::unordered_map<std::string, DailyVitals> &patients);
+void evaluate(std::unordered_map<std::string, DailyVitals> &patients);
+void save(std::unordered_map<std::string, DailyVitals> &patients);
+
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
-    std::vector<DailyVitals> patients;
+    std::unordered_map<std::string, DailyVitals> patients;
     std::string input = "";
     std::cout << "Welcome to the Health Tracker!\n";
     while (input != "4") {
@@ -82,7 +82,7 @@ Enter selected option (ie. 1, 2, 3, 4): )";
 }
 
 // execute selected menu option based on input
-void handleMenu(std::string input, std::vector<DailyVitals> &patients) {
+void handleMenu(std::string input, std::unordered_map<std::string, DailyVitals> &patients) {
     if (input == "1") {
         record(patients);
     } else if (input == "2") {
@@ -97,7 +97,7 @@ void handleMenu(std::string input, std::vector<DailyVitals> &patients) {
 }
 
 // [1] record given health vitals (ask for input, store in vars)
-void record(std::vector<DailyVitals> &patients) {
+void record(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string input = "";
     std::string username = "";
     int heartRate = 0;
@@ -143,40 +143,32 @@ void record(std::vector<DailyVitals> &patients) {
             std::cout << std::format("{}\n", errorBool);
         }
     }
-    std::cout << std::format("=> Username: {}\n", username);
-    std::cout << std::format("=> Resting heart rate: {}\n", heartRate);
-    std::cout << std::format("=> Step count: {}\n", steps);
-    std::cout << std::format("=> Medication status: {}\n", medTaken);
+    patients.insert({username, DailyVitals(username, heartRate, steps, medTaken)});
+    std::cout << std::format("=> Vitals successfully recorded for {}.\n", username);
 }
 
 // [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores / ratings)
-void evaluate(std::vector<DailyVitals> &patients) {
-    std::string input = "";
+void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = "";
-    int heartRate = 0;
-    int steps = 0;
-    bool medTaken = false;
-    std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for int
-    std::string errorBool = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication not taken)."; // error msg displayed after invalid input for bool
-    bool error = false;
     std::cout << "Enter patient username (only for returning users): ";
     std::cin >> username;
-    // username not found: ask user if they would like to create account and record today's vitals, call record func
-    // vitals not recorded: ask user if they would like to record today's vitals, call record func
+    DailyVitals patient = patients.at(username);
+    std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
+    std::cout << std::format("=> Step count: {}\n", patient.getSteps());
+    std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
+    // WIP => username not found (unodered_map.at(key) throws out_of_range exception): ask user if they would like to create account and record today's vitals, call record func
+    // WIP => vitals not recorded: ask user if they would like to record today's vitals, call record func
 }
 
 // [3] save evaluation summary in log (append formatted values to log file, create log file if doesn't exist yet)
-void save(std::vector<DailyVitals> &patients) {
-    std::string input = "";
+void save(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = "";
-    int heartRate = 0;
-    int steps = 0;
-    bool medTaken = false;
-    std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for int
-    std::string errorBool = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication not taken)."; // error msg displayed after invalid input for bool
-    bool error = false;
     std::cout << "Enter patient username (only for returning users): ";
     std::cin >> username;
-    // username not found: ask user if they would like to create account and record today's vitals, call record func
-    // vitals not recorded: ask user if they would like to record today's vitals, call record func
+    DailyVitals patient = patients.at(username);
+    std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
+    std::cout << std::format("=> Step count: {}\n", patient.getSteps());
+    std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
+    // WIP => username not found (unodered_map.at(key) throws out_of_range exception): ask user if they would like to create account and record today's vitals, call record func
+    // WIP => vitals not recorded: ask user if they would like to record today's vitals, call record func
 }
