@@ -1,4 +1,5 @@
 // standard library headers
+#include <chrono>
 #include <format>
 #include <iostream>
 #include <sstream>
@@ -52,6 +53,12 @@ class DailyVitals {
             else {
                 return 1; // exceeded goal
             }
+        }
+        std::string getSummary() { // return inputted vitals and calculate overall score (print summary in evaluate func, export summary in save func)
+            auto utc = std::chrono::system_clock::now(); // auto: compiler automatically detects var data type
+            auto localTime = std::chrono::current_zone()->to_local(utc); // find active time zone in computer's OS, converts UTC time to local time
+            std::string summary = std::format("=== {:%B %d, %Y @ %I:%M %p} [{}] ===\n", localTime, username); // need to start with : when formatting date / time within brackets
+            return summary;
         }
 }; // need semicolon b/c class definition treated as declaration statement
 
@@ -179,9 +186,10 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
 void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = promptUsername(patients);
     if (username == "") {
-        return;
+        return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
+    std::cout << patient.getSummary();
     std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
     std::cout << std::format("=> Step count: {}\n", patient.getSteps());
     std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
@@ -191,12 +199,10 @@ void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
 void save(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = promptUsername(patients);
     if (username == "") {
-        return;
+        return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
     std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
     std::cout << std::format("=> Step count: {}\n", patient.getSteps());
     std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
-    // WIP => analyze vitals behind the scenes
-    // WIP => create func for analyzing vitals behind the scenes (uesd in evaluate to print summary, used in save to export summary)
 }
