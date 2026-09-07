@@ -62,7 +62,7 @@ class DailyVitals {
                 return {5, "mostly inactive"};
             }
         }
-        Score scoreMedTaken() { // WIP => allow user to specify whether they take medication
+        Score scoreMedTaken() { // maybe allow user to specify whether they take medication in future?
             if (medTaken) {
                 return {30, "taken or not applicable"};
             } else {
@@ -219,14 +219,14 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
     return patients.at(username);
 }
 
-// [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores / ratings)
+// [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores)
 void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = promptUsername(patients);
     if (username == "") {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
-    std::cout << patient.getSummary(); // WIP => print summary
+    std::cout << patient.getSummary();
 }
 
 // [3] save evaluation summary in log (append formatted values to log file, create log file if doesn't exist yet)
