@@ -6,6 +6,12 @@
 #include <string>
 #include <unordered_map>
 
+// define structure to return numerical score + qualitative analysis in score funcs
+struct Score {
+    int num;
+    std::string analysis;
+};  // need semicolon b/c struct definition treated as declaration statement (can declare instance of struct immediately after closing bracket)
+
 // define class to store attributes and methods dealing with daily vitals
 class DailyVitals {
     private:
@@ -32,35 +38,66 @@ class DailyVitals {
         bool getMedTaken() {
             return medTaken;
         }
-        int compareHeartRate() { // normal resting heart rate for adults: 60-100 BPM (https://my.clevelandclinic.org/health/diagnostics/heart-rate) (maybe allow user to input additional factors in future, like age / exercise)
-            if (heartRate < 60) {
-                return -1; // below threshold
-            }
-            else if (heartRate >= 60 && heartRate <= 100) {
-                return 0; // within threshold
-            }
-            else {
-                return 1; // above threshold
-            }
-        }
-        int compareSteps() { // recommended goal for adults: 10,000 (https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity) (maybe allow user to input their own goal in future)
-            if (steps < 10000) {
-                return -1; // did not meet goal
-            }
-            else if (steps == 10000) {
-                return 0; // met goal
-            }
-            else {
-                return 1; // exceeded goal
+        Score scoreHeartRate() { // normal resting heart rate for adults: 60-100 BPM (https://my.clevelandclinic.org/health/diagnostics/heart-rate) (maybe allow user to input additional factors in future, like age / exercise?)
+            if (heartRate >= 60 && heartRate <= 80) {
+                return {35, "healthy"};
+            } else if (heartRate >= 81 && heartRate <= 100) {
+                return {25, "slightly elevated"};
+            } else if (heartRate >= 50 && heartRate <= 59) {
+                return {25, "low"};
+            } else if (heartRate < 50) {
+                return {10, "very low"};
+            } else { // above 100
+                return {10, "very high"};
             }
         }
-        std::string getSummary() { // return inputted vitals and calculate overall score (print summary in evaluate func, export summary in save func)
-            auto utc = std::chrono::system_clock::now(); // auto: compiler automatically detects var data type
-            auto localTime = std::chrono::current_zone()->to_local(utc); // find active time zone in computer's OS, converts UTC time to local time
-            std::string summary = std::format("=== {:%B %d, %Y @ %I:%M %p} [{}] ===\n", localTime, username); // need to start with : when formatting date / time within brackets
+        Score scoreSteps() { // recommended goal for adults: 10,000 (https://www.nih.gov/news-events/nih-research-matters/number-steps-day-more-important-step-intensity) (maybe allow user to input their own goal in future?)
+            if (steps >= 10000) {
+                return {35, "highly active"};
+            } else if (steps >= 7500 && steps <= 9999) {
+                return {25, "moderately active"};
+            } else if (steps >= 5000 && steps <=7499) {
+                return {15, "slightly active"};
+            } else { // under 5,000
+                return {5, "mostly inactive"};
+            }
+        }
+        Score scoreMedTaken() { // WIP => allow user to specify whether they take medication
+            if (medTaken) {
+                return {30, "taken or not applicable"};
+            } else {
+                return {0, "missed"};
+            }
+        }
+        Score scoreOverall() {
+            int score = scoreHeartRate().num + scoreSteps().num + scoreMedTaken().num;
+            if (score >= 90) {
+                return {score, "excellent"};
+            } else if (score >= 75 && score <= 89) {
+                return {score, "good"};
+            } else if (score >= 60 && score <= 74) {
+                return {score, "fair"};
+            } else {
+                return {score, "needs improvement"};
+            }
+        }
+        std::string getSummary() { // return inputted vitals and calculate overall score (heartRate is worth 35 points, steps is worth 35 points, medTaken is worth 30 points)
+            auto utc = std::chrono::system_clock::now(); // get precise date and time in UTC (auto: compiler automatically detects var data type)
+            auto localTime = std::chrono::current_zone()->to_local(utc); // find active time zone in computer's OS, convert UTC time to local time (-> accesses method of pointer returned by current_zone; pointer stores memory address of other var)
+            std::string summary = std::format("\n=== {:%B %d, %Y @ %I:%M %p} [{}] ===\n", localTime, username); // need to start with : when formatting date / time within brackets
+            std::unordered_map<std::string, Score> scores = {
+                {"heartRate", scoreHeartRate()},
+                {"steps", scoreSteps()},
+                {"medTaken", scoreMedTaken()},
+                {"overall", scoreOverall()}
+            };
+            summary += std::format("Resting heart rate: {} BPM ({} +{} pts)\n", heartRate, scores.at("heartRate").analysis, scores.at("heartRate").num);
+            summary += std::format("Step count: {} ({} +{} pts)\n", steps, scores.at("steps").analysis, scores.at("steps").num);
+            summary += std::format("Medication status: {} (+{} pts)\n", scores.at("medTaken").analysis, scores.at("medTaken").num);
+            summary += std::format("Overall health score: {}/100 ({})\n", scores.at("overall").num, scores.at("overall").analysis);
             return summary;
         }
-}; // need semicolon b/c class definition treated as declaration statement
+}; // need semicolon b/c class definition treated as declaration statement (can declare object / instance of class immediately after closing bracket)
 
 // func declarations (both actual def AND prototype MUST match; pass patients to all funcs)
 void handleMenu(std::string input, std::unordered_map<std::string, DailyVitals> &patients);
@@ -138,7 +175,7 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
     int steps = 0;
     bool medTaken = false;
     std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for int
-    std::string errorBool = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication not taken)."; // error msg displayed after invalid input for bool
+    std::string errorBool = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication missed)."; // error msg displayed after invalid input for bool
     bool error = false;
     std::cout << "Enter patient username (create username for new users, type existing username for returning users): ";
     std::cin >> username;
@@ -189,10 +226,7 @@ void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
-    std::cout << patient.getSummary();
-    std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
-    std::cout << std::format("=> Step count: {}\n", patient.getSteps());
-    std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
+    std::cout << patient.getSummary(); // WIP => print summary
 }
 
 // [3] save evaluation summary in log (append formatted values to log file, create log file if doesn't exist yet)
@@ -202,6 +236,7 @@ void save(std::unordered_map<std::string, DailyVitals> &patients) {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
+    // WIP => export summary
     std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
     std::cout << std::format("=> Step count: {}\n", patient.getSteps());
     std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
