@@ -1,6 +1,7 @@
 // standard library headers
 #include <chrono>
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -232,8 +233,9 @@ void save(std::unordered_map<std::string, DailyVitals> &patients) {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
-    // WIP => export summary
-    std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
-    std::cout << std::format("=> Step count: {}\n", patient.getSteps());
-    std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
+    std::string summary = patient.getSummary();
+    std::ofstream log(std::format("{}.txt", username), std::ios::app); // ios (input / output stream) works to set mode for ofstream / ifstream / fstream, fstream can be used to read / write, ofstream constructor creates new file by default if nonexistent
+    log << summary;
+    log.close(); // important to close when done (free up resources)
+    std::cout << std::format("=> Vitals successfully saved for {}.\n", username);
 }
