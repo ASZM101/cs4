@@ -115,7 +115,7 @@ int main() {
         std::string menu = R"(Choose one of the following options:
 [1] Record today's vitals
 [2] Evaluate today's vitals (must record first)
-[3] Save today's summary in log (must evaluate first)
+[3] Save today's summary in log (must record first)
 [4] Exit
 Enter selected option (ie. 1, 2, 3, 4): )";
         std::cout << std::format("\n{}", menu);
@@ -150,18 +150,14 @@ std::string promptUsername(std::unordered_map<std::string, DailyVitals> &patient
     if (!patients.contains(username)) // check if user has recorded vitals yet
     {
         std::cout << "(!) It seems like you have not recorded your vitals for today yet.\n";
-        while (input != "y" && input != "n") { // prompt user to record vitals (y: call record func, n: return to main menu)
+        while (input != "y" && input != "n") { // prompt user to record vitals
             std::cout << "Would you like to record today's vitals first? (y/n): ";
             std::cin >> input;
             if (input != "y" && input != "n") { // ensure user only enters y or n
                 std::cout << "(!) Please only type y (to record vitals) or n (to return to the main menu).\n";
             }
         }
-        if (input == "y") { // y: record vitals
-            return record(patients).getUsername();
-        } else { // n: return to main menu
-            return "";
-        }
+        return (input == "y") ? record(patients).getUsername() : ""; // y = call record func, n = return to main menu
     } else {
         return username;
     }
