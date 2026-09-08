@@ -4,4 +4,4 @@
 
 All of my coursework for Computer Science Independent Study KAP (CS4)
 
-*~ 2026-2027 (12th Grade)*
+*2026-2027 (12th Grade)*

@@ -1,6 +1,7 @@
 // standard library headers
 #include <chrono>
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -12,7 +13,7 @@ struct Score {
     std::string analysis;
 };  // need semicolon b/c struct definition treated as declaration statement (can declare instance of struct immediately after closing bracket)
 
-// define class to store attributes and methods dealing with daily vitals
+// define class to store attributes + methods dealing with daily vitals
 class DailyVitals {
     private:
         std::string username;
@@ -62,7 +63,7 @@ class DailyVitals {
                 return {5, "mostly inactive"};
             }
         }
-        Score scoreMedTaken() { // WIP => allow user to specify whether they take medication
+        Score scoreMedTaken() { // maybe allow user to specify whether they take medication in future?
             if (medTaken) {
                 return {30, "taken or not applicable"};
             } else {
@@ -81,8 +82,8 @@ class DailyVitals {
                 return {score, "needs improvement"};
             }
         }
-        std::string getSummary() { // return inputted vitals and calculate overall score (heartRate is worth 35 points, steps is worth 35 points, medTaken is worth 30 points)
-            auto utc = std::chrono::system_clock::now(); // get precise date and time in UTC (auto: compiler automatically detects var data type)
+        std::string getSummary() { // return inputted vitals + calculate overall score (heartRate is worth 35 points, steps is worth 35 points, medTaken is worth 30 points)
+            auto utc = std::chrono::system_clock::now(); // get precise date + time in UTC (auto: compiler automatically detects var data type)
             auto localTime = std::chrono::current_zone()->to_local(utc); // find active time zone in computer's OS, convert UTC time to local time (-> accesses method of pointer returned by current_zone; pointer stores memory address of other var)
             std::string summary = std::format("\n=== {:%B %d, %Y @ %I:%M %p} [{}] ===\n", localTime, username); // need to start with : when formatting date / time within brackets
             std::unordered_map<std::string, Score> scores = {
@@ -115,7 +116,7 @@ int main() {
         std::string menu = R"(Choose one of the following options:
 [1] Record today's vitals
 [2] Evaluate today's vitals (must record first)
-[3] Save today's summary in log (must evaluate first)
+[3] Save today's summary in log (must record first)
 [4] Exit
 Enter selected option (ie. 1, 2, 3, 4): )";
         std::cout << std::format("\n{}", menu);
@@ -150,18 +151,14 @@ std::string promptUsername(std::unordered_map<std::string, DailyVitals> &patient
     if (!patients.contains(username)) // check if user has recorded vitals yet
     {
         std::cout << "(!) It seems like you have not recorded your vitals for today yet.\n";
-        while (input != "y" && input != "n") { // prompt user to record vitals (y: call record func, n: return to main menu)
+        while (input != "y" && input != "n") { // prompt user to record vitals
             std::cout << "Would you like to record today's vitals first? (y/n): ";
             std::cin >> input;
             if (input != "y" && input != "n") { // ensure user only enters y or n
                 std::cout << "(!) Please only type y (to record vitals) or n (to return to the main menu).\n";
             }
         }
-        if (input == "y") { // y: record vitals
-            return record(patients).getUsername();
-        } else { // n: return to main menu
-            return "";
-        }
+        return (input == "y") ? record(patients).getUsername() : ""; // y = call record func, n = return to main menu
     } else {
         return username;
     }
@@ -174,12 +171,27 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
     int heartRate = 0;
     int steps = 0;
     bool medTaken = false;
-    std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for int
-    std::string errorBool = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication missed)."; // error msg displayed after invalid input for bool
+    std::string errorUser = "(!) Please only use basic letters (A-Z, a-z), numbers (0-9), underscores (_), and/or hyphens (-) in your username."; // error msg displayed after invalid input for username
+    std::string errorInt = "(!) Please only type a positive integer."; // error msg displayed after invalid input for heartRate / steps
+    std::string errorMed = "(!) Please only type either 1 (medication taken or not applicable) or 0 (medication missed)."; // error msg displayed after invalid input for medTaken
     bool error = false;
-    std::cout << "Enter patient username (create username for new users, type existing username for returning users): ";
-    std::cin >> username;
-    while (input.length() < 1 || error) { // get input for resting heart rate
+    while (input.empty() || input.length() > 255 || error) { // get input for username (cannot be empty or longer than 255 chars)
+        error = false; // reset to detect errors in new input
+        std::cout << "Enter patient username (create username for new users, type existing username for returning users): ";
+        std::cin >> input;
+        for (char c : input) { // scan every char (block tabs / newlines + unsafe chars for file names in Windows / Mac / Linux)
+            unsigned char uc = static_cast<unsigned char>(c); // convert signed char (-128 to 127) to unsigned (0 to 255), international chars can be treated as negative nums, must be converted to positive num to check if uc < 32 (ASCII nums 0-31 are control chars / invisible commands, 32 = space is allowed)
+            if (uc < 32 || std::string("\\/:*?\"<>|").find(c) != std::string::npos) { // check if control char (ASCII nums 0-31), create temp string with Window's forbidden chars (\\ escapes single backslash, Linux / Mac only forbid forward slash), npos = no position (returned by find method if no match found)
+                error = true;
+            }
+        }
+        if (error) {
+            std::cout << std::format("{}\n", errorUser);
+        }
+        username = error ? "" : input;
+    }
+    input = ""; // reset input for next while loop
+    while (input.empty() || error) { // get input for resting heart rate
         std::cout << "Enter resting heart rate (BPM): ";
         std::cin >> input;
         std::stringstream convert(input);
@@ -191,7 +203,7 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
         }
     }
     input = ""; // reset input for next while loop
-    while (input.length() < 1 || error) { // get input for step count
+    while (input.empty() || error) { // get input for step count
         std::cout << "Enter step count: ";
         std::cin >> input;
         std::stringstream convert(input);
@@ -203,7 +215,7 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
         }
     }
     input = ""; // reset input for next while loop
-    while (input.length() < 1 || error) { // get input for medication status
+    while (input.empty() || error) { // get input for medication status
         std::cout << "Enter medication status (1 = taken or not applicable, 0 = missed): ";
         std::cin >> input;
         if (input == "1" || input == "0") { // ensure input is either 1 or 0
@@ -211,7 +223,7 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
             medTaken = input == "1" ? true : false;
         } else {
             error = true;
-            std::cout << std::format("{}\n", errorBool);
+            std::cout << std::format("{}\n", errorMed);
         }
     }
     patients.insert_or_assign(username, DailyVitals(username, heartRate, steps, medTaken)); // add new patient to unordered map, update existing patient if already recorded vitals (as opposed to insert method, which does not insert / update item if already exists)
@@ -219,14 +231,14 @@ DailyVitals record(std::unordered_map<std::string, DailyVitals> &patients) {
     return patients.at(username);
 }
 
-// [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores / ratings)
+// [2] evaluate given health vitals (compare stored vars to pre-defined thresholds, output health scores)
 void evaluate(std::unordered_map<std::string, DailyVitals> &patients) {
     std::string username = promptUsername(patients);
     if (username == "") {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
-    std::cout << patient.getSummary(); // WIP => print summary
+    std::cout << patient.getSummary();
 }
 
 // [3] save evaluation summary in log (append formatted values to log file, create log file if doesn't exist yet)
@@ -236,8 +248,9 @@ void save(std::unordered_map<std::string, DailyVitals> &patients) {
         return; // return to main menu
     }
     DailyVitals patient = patients.at(username);
-    // WIP => export summary
-    std::cout << std::format("=> Resting heart rate: {}\n", patient.getHeartRate());
-    std::cout << std::format("=> Step count: {}\n", patient.getSteps());
-    std::cout << std::format("=> Medication status: {}\n", patient.getMedTaken());
+    std::string summary = patient.getSummary();
+    std::ofstream log(std::format("{}.txt", username), std::ios::app); // ios (input / output stream) works to set mode for ofstream / ifstream / fstream, fstream can be used to read / write, ofstream constructor creates new file by default if nonexistent
+    log << summary;
+    log.close(); // important to close when done (free up resources)
+    std::cout << std::format("=> Vitals successfully saved in {}.txt\n", username);
 }
