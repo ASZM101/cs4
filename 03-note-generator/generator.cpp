@@ -8,6 +8,12 @@ void sound();
 void melody();
 void visualize();
 
+// WIP => define base class to store attributes + methods for all oscillators
+
+// WIP => define base class to store attributes + methods for sine oscillators (smooth)
+
+// WIP => define base class to store attributes + methods for square oscillators (flat top + bottom)
+
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
     std::string input = "";
@@ -42,17 +48,17 @@ void handleMenu(std::string input) {
     }
 }
 
-// [1] synthesize single tone
+// WIP => [1] synthesize single tone
 void sound() {
     std::cout << "Sound generator mode selected.\n";
 }
 
-// [2] play algorithmic melody
+// WIP => [2] play algorithmic melody
 void melody() {
     std::cout << "Melody generator mode selected.\n";
 }
 
-// [3] view waveform visualization
+// WIP => [3] view waveform visualization
 void visualize() {
     std::cout << "Visualization mode selected.\n";
 }
