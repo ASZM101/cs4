@@ -1,8 +1,13 @@
+// standard library headers
 #include <cmath>
 #include <chrono>
 #include <format>
 #include <iostream>
 #include <string>
+
+// custom header files
+#define MINIAUDIO_IMPLEMENTATION // preprocessor directive: creates macro (finds + replaces text in source code before compilation starts; this line can only be in one cpp file, need to define BEFORE including miniaudio.h)
+#include "miniaudio.h" // miniaudio source (external library for audio playback): https://github.com/mackron/miniaudio
 
 // func declarations (both actual def AND prototype MUST match)
 void handleMenu(std::string input);
