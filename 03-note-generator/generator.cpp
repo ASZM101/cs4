@@ -1,6 +1,5 @@
 // standard library headers
 #include <cmath>
-#include <chrono>
 #include <format>
 #include <iostream>
 #include <string>
@@ -17,11 +16,27 @@ void visualize();
 
 // WIP => define base class to store attributes + methods for all oscillators
 class Oscillator {
-};
+    private:
+        double frequency;
+        double amplitude;
+    public:
+        virtual double getY(double time) = 0; // = 0 makes it a pure virtual func (forces derived classes to implement func, turns class into abstract class / interface, cannot create instance of Oscillator directly)
+        virtual ~Oscillator() = default; // standard virtual destructor (~): required for classes w/ virtual func
+}; // need semicolon b/c class definition treated as declaration statement (can declare object / instance of class immediately after closing bracket)
 
 // WIP => define base class to store attributes + methods for sine oscillators (smooth)
+class SineOscillator : public Oscillator {
+    public:
+        double getY(double time) override {
+        }
+};
 
 // WIP => define base class to store attributes + methods for square oscillators (flat top + bottom)
+class SquareOscillator : public Oscillator {
+    public:
+        double getY(double time) override {
+        }
+};
 
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
