@@ -2,6 +2,7 @@
 #include <cmath>
 #include <format>
 #include <iostream>
+#include <numbers>
 #include <string>
 
 // custom header files
@@ -16,25 +17,31 @@ void visualize();
 
 // WIP => define base class to store attributes + methods for all oscillators
 class Oscillator {
-    private:
+    protected: // allow attributes to be accessed inside derived classes
         double frequency;
         double amplitude;
     public:
-        virtual double getY(double time) = 0; // = 0 makes it a pure virtual func (forces derived classes to implement func, turns class into abstract class / interface, cannot create instance of Oscillator directly)
+        Oscillator(double f) : frequency(f), amplitude(0) {} // member initializer list: more efficient than assigning in constructor body (where attributes are first default-constructed, then re-assigned, less efficient, also required for const vars / references)
         virtual ~Oscillator() = default; // standard virtual destructor (~): required for classes w/ virtual func
+        virtual double getY(double time) = 0; // = 0 makes it a pure virtual func (forces derived classes to implement func, turns class into abstract class / interface, cannot create instance of Oscillator directly)
 }; // need semicolon b/c class definition treated as declaration statement (can declare object / instance of class immediately after closing bracket)
 
 // WIP => define base class to store attributes + methods for sine oscillators (smooth)
 class SineOscillator : public Oscillator {
     public:
+        SineOscillator(double f) : Oscillator(f) {} // use base constructor
         double getY(double time) override {
+            return amplitude * std::sin(2 * std::numbers::pi * frequency * time); // y(t) = A * sin(2pi * ft); angle for sin() must be in radians
         }
 };
 
 // WIP => define base class to store attributes + methods for square oscillators (flat top + bottom)
 class SquareOscillator : public Oscillator {
     public:
+        SquareOscillator(double f) : Oscillator(f) {} // use base constructor
         double getY(double time) override {
+            // WIP => return +A if sin(2pi * ft) >= 0, else -A
+            return amplitude * std::sin(2 * std::numbers::pi * frequency * time); // y(t) = A * sin(2pi * ft); angle for sin() must be in radians
         }
 };
 
