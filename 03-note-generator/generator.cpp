@@ -17,21 +17,60 @@ void visualize();
 
 // WIP => define base class to store attributes + methods for all oscillators
 class Oscillator {
-    protected: // allow attributes to be accessed inside derived classes
+    public: // general order (though doesn't really matter): public first (constructors, destructor, getters / access methods, setters / modify methods, other / worker methods), then protected, private last
+        Oscillator(double f) : frequency(f), amplitude(1), phase(0), sampleRate(48000), active(false) {} // member initializer list: more efficient than assigning in constructor body (where attributes are first default-constructed, then re-assigned, less efficient, also required for const vars / references)
+        virtual ~Oscillator() = default; // standard virtual destructor (~): required for classes w/ virtual func
+        double getFrequency() {
+            return frequency;
+        }
+        double getAmplitude() {
+            return amplitude;
+        }
+        double getPhase() {
+            return phase;
+        }
+        double getSampleRate() {
+            return sampleRate;
+        }
+        bool isActive() {
+            return active;
+        }
+        void setFrequency(double f) {
+            frequency = f;
+        }
+        void setAmplitude(double amp) {
+            amplitude = amp;
+        }
+        void setPhase(double p) {
+            phase = p;
+        }
+        void setSampleRate(double sr) {
+            sampleRate = sr;
+        }
+        void setActive(bool state) {
+            active = state;
+        }
+        void resetPhase() { // start new note
+            phase = 0;
+        }
+        virtual double getY(double time) = 0; // = 0 makes it a pure virtual method (forces derived classes to implement func, turns class into abstract class / interface, cannot create instance of Oscillator directly)
+        virtual double nextY() = 0;
+    protected: // protected: allows attributes to be accessed inside derived classes (private: can only be accessed within defining class)
         double frequency;
         double amplitude;
-    public:
-        Oscillator(double f) : frequency(f), amplitude(0) {} // member initializer list: more efficient than assigning in constructor body (where attributes are first default-constructed, then re-assigned, less efficient, also required for const vars / references)
-        virtual ~Oscillator() = default; // standard virtual destructor (~): required for classes w/ virtual func
-        virtual double getY(double time) = 0; // = 0 makes it a pure virtual func (forces derived classes to implement func, turns class into abstract class / interface, cannot create instance of Oscillator directly)
+        double phase;
+        double sampleRate;
+        bool active; // mute state (control note duration)
 }; // need semicolon b/c class definition treated as declaration statement (can declare object / instance of class immediately after closing bracket)
 
 // WIP => define base class to store attributes + methods for sine oscillators (smooth)
 class SineOscillator : public Oscillator {
     public:
         SineOscillator(double f) : Oscillator(f) {} // use base constructor
-        double getY(double time) override {
+        double getY(double time) override { // return sample y(t) at time t (in seconds)
             return amplitude * std::sin(2 * std::numbers::pi * frequency * time); // y(t) = A * sin(2pi * ft); angle for sin() must be in radians
+        }
+        double nextY() { // WIP => generate next sample, update phase state
         }
 };
 
@@ -39,9 +78,11 @@ class SineOscillator : public Oscillator {
 class SquareOscillator : public Oscillator {
     public:
         SquareOscillator(double f) : Oscillator(f) {} // use base constructor
-        double getY(double time) override {
+        double getY(double time) override { // return sample y(t) at time t (in seconds)
             // WIP => return +A if sin(2pi * ft) >= 0, else -A
             return amplitude * std::sin(2 * std::numbers::pi * frequency * time); // y(t) = A * sin(2pi * ft); angle for sin() must be in radians
+        }
+        double nextY() { // WIP => generate next sample, update phase state
         }
 };
 
