@@ -61,7 +61,7 @@ class SineOscillator : public Oscillator {
         }
 };
 
-// WIP => define derived class to store attributes + methods for square oscillators (flat top + bottom)
+// define derived class to store attributes + methods for square oscillators (flat top + bottom)
 class SquareOscillator : public Oscillator {
     public:
         SquareOscillator(double f) : Oscillator(f) {} // use base constructor
@@ -123,7 +123,7 @@ void melody() {
     std::cout << "Melody generator mode selected.\n";
 }
 
-// WIP => [3] view soundwave visualization (given wave type + frequency, use ASCII amplitude plot)
+// WIP => [3] view soundwave visualization (given frequency, use ASCII amplitude plot)
 void visualize() {
     std::cout << "Visualization mode selected.\n";
 }
