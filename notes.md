@@ -1,0 +1,12 @@
+# Requirements for Submission
+- [] GitHub repo link
+- [] README (look at professional repos for inspo: [miniaudio](https://github.com/mackron/miniaudio))
+    - Requirements to run program
+    - How to build
+    - What it does
+    - Optional: maybe add more badges? (stats from WakaTime)
+- [] Demo video
+    - With or without voiceover
+    - Focus on actual demo (not code)
+    - For explaining code, only focus on one feature you're proud of (something you would show to future employer to convince them to hire you)
+    - Optional: maybe add videos to repo?

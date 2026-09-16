@@ -1,3 +1,5 @@
+// reference for converting note to frequency and vice versa: https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
+
 // standard library headers
 #include <algorithm>
 #include <cmath>
@@ -81,7 +83,19 @@ class SquareOscillator : public Oscillator {
         }
 };
 
-// WIP => define class to store attributes + methods for wav filenames (sine / square, tone / melody, frequency)
+// define class to store attributes + methods for creating filenames for wav files (sine / square, note / melody, frequency)
+class File {
+    public:
+        File(std::string w, std::string a, double f) : waveType(w), audioType(a), frequency(std::to_string(f)) {} // convert frequency from double to str
+        std::string name() { // return formatted filename for wav files
+            std::replace(frequency.begin(), frequency.end(), ".", "_"); // replace all periods with underscores in frequency (replace func modifies given str); syntax: first iterator (not index), last iterator, old char, new char (overloaded func, has multiple lists of params)
+            return std::format("{}_{}-{}Hz.wav", waveType, audioType, frequency);
+        }
+    private:
+        std::string waveType; // either sine or square
+        std::string audioType; // either note or melody
+        std::string frequency; // note pitch (hertz)
+};
 
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
@@ -120,7 +134,7 @@ void handleMenu(std::string input) {
 // WIP => [1] export note to wav file (given wave type + frequency + duration, use external library for audio processing)
 void note() {
     std::string input = "";
-    int waveType = 0; // either sine [1] or square [2]
+    std::string waveType = ""; // either sine or square
     double frequency = 0; // note pitch (hertz)
     double duration = 0; // seconds
     std::string errorWave = "(!) Please only type either 1 (sine wave) or 2 (square wave).";
@@ -131,7 +145,7 @@ void note() {
         std::cin >> input;
         if (input == "1" || input == "2") { // ensure input is either 1 or 2
             error = false;
-            waveType = input == "1" ? 1 : 2;
+            waveType = input == "1" ? "sine" : "square";
         } else {
             error = true;
             std::cout << std::format("{}\n", errorWave);
@@ -161,10 +175,10 @@ void note() {
             std::cout << std::format("{}\n", errorDouble);
         }
     }
-    // WIP => filename
-    // std::string filename = std::format("{}_note-{}Hz.wave", waveType == 1 ? "sine" : "square", std::replace(std::to_string(frequency).begin(), std::to_string(frequency), ".", "_"));
-    // std::cout << std::format("Exporting tone to {}...\n");
-    // reference for converting note to frequency and vice versa: https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
+    std::string file = File(waveType, "note", frequency).name();
+    std::cout << std::format("Exporting audio to {}...\n", file);
+
+    // WIP => actually export note to wav, may need to use static cast to use either sine or square oscillator
 }
 
 // WIP => [2] export melody to wav file (given root note, use math functions + nested loops for creating sequence of notes, use external library for audio processing)
