@@ -1,8 +1,10 @@
 // standard library headers
+#include <algorithm>
 #include <cmath>
 #include <format>
 #include <iostream>
 #include <numbers>
+#include <sstream>
 #include <string>
 
 // custom header files
@@ -44,7 +46,7 @@ class Oscillator {
         double sampleRate = 48000; // resolution / upper frequency limit of audio (hertz), how much phase increments per audio frame (p = 2pi * f / sr); 48 kHz = standard sample rate in digital audio
 }; // need semicolon b/c class definition treated as declaration statement (can declare object / instance of class immediately after closing bracket)
 
-// define derived class to store attributes + methods for sine oscillators (smooth)
+// define derived class to store attributes + methods for sine oscillators (smooth curve, softer sound)
 class SineOscillator : public Oscillator {
     public:
         SineOscillator(double f) : Oscillator(f) {} // use base constructor
@@ -61,7 +63,7 @@ class SineOscillator : public Oscillator {
         }
 };
 
-// define derived class to store attributes + methods for square oscillators (flat top + bottom)
+// define derived class to store attributes + methods for square oscillators (flat top + bottom when graphed, buzzy sound)
 class SquareOscillator : public Oscillator {
     public:
         SquareOscillator(double f) : Oscillator(f) {} // use base constructor
@@ -78,6 +80,8 @@ class SquareOscillator : public Oscillator {
             return y;
         }
 };
+
+// WIP => define class to store attributes + methods for wav filenames (sine / square, tone / melody, frequency)
 
 // display menu options [=> used for single-line outputs, (!) used for errors]
 int main() {
@@ -115,7 +119,52 @@ void handleMenu(std::string input) {
 
 // WIP => [1] export note to wav file (given wave type + frequency + duration, use external library for audio processing)
 void note() {
-    std::cout << "Note generator mode selected.\n";
+    std::string input = "";
+    int waveType = 0; // either sine [1] or square [2]
+    double frequency = 0; // note pitch (hertz)
+    double duration = 0; // seconds
+    std::string errorWave = "(!) Please only type either 1 (sine wave) or 2 (square wave).";
+    std::string errorDouble = "(!) Please only type a positive number (can be a decimal)."; // error msg displayed after invalid input for double
+    bool error = false;
+    while (input.empty() || error) { // get input for wave type
+        std::cout << "Select wave type (1 = sine wave, 2 = square wave): ";
+        std::cin >> input;
+        if (input == "1" || input == "2") { // ensure input is either 1 or 2
+            error = false;
+            waveType = input == "1" ? 1 : 2;
+        } else {
+            error = true;
+            std::cout << std::format("{}\n", errorWave);
+        }
+    }
+    input = ""; // reset input for next while loop
+    while (input.empty() || error) { // get input for frequency
+        std::cout << "Enter frequency of note (Hz): ";
+        std::cin >> input;
+        std::stringstream convert(input);
+        if (convert >> frequency && frequency > 0) { // try to convert str from stream to double, ensure input is positive
+            error = false;
+        } else {
+            error = true;
+            std::cout << std::format("{}\n", errorDouble);
+        }
+    }
+    input = ""; // reset input for next while loop
+    while (input.empty() || error) { // get input for frequency
+        std::cout << "Enter duration of note (seconds): ";
+        std::cin >> input;
+        std::stringstream convert(input);
+        if (convert >> duration && duration > 0) { // try to convert str from stream to double, ensure input is positive
+            error = false;
+        } else {
+            error = true;
+            std::cout << std::format("{}\n", errorDouble);
+        }
+    }
+    // WIP => filename
+    // std::string filename = std::format("{}_note-{}Hz.wave", waveType == 1 ? "sine" : "square", std::replace(std::to_string(frequency).begin(), std::to_string(frequency), ".", "_"));
+    // std::cout << std::format("Exporting tone to {}...\n");
+    // reference for converting note to frequency and vice versa: https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
 }
 
 // WIP => [2] export melody to wav file (given root note, use math functions + nested loops for creating sequence of notes, use external library for audio processing)

@@ -8,8 +8,5 @@
 # !.vscode/settings.json
 
 # files for testing code
+testing/
 *.wav
-main.cpp
-main
-test.cpp
-test
