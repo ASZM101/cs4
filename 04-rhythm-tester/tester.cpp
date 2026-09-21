@@ -71,13 +71,17 @@ void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>>& lessons
     int choice = 0;
     std::string flushBuffer;
     std::getline(std::cin, flushBuffer); // clear remaining input stream
+    std::string errorInt = std::format("(!) Please only type a positive integer between 1 and {} (inclusive) to select an exercise.\n", (lessons.size() + 1));
     std::stringstream ss(input);
     if (ss >> choice) { // try to convert str from stream to int
         if (choice == lessons.size() + 1) { // exit option selected
             return;
+        } else if (choice < 1 || choice > lessons.size()) {
+            std::cout << errorInt;
+            return;
         }
     } else { // invalid exercise selection
-        std::cout << std::format("(!) Please only type a positive integer between 1 and {} (inclusive) to select an exercise.\n", (lessons.size() + 1));
+        std::cout << errorInt;
         return;
     }
     const Lesson& selectedLesson = *lessons[choice - 1]; // dereference unique pointer to lesson reference (access actual value at memory address)
