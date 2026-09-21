@@ -1,7 +1,3 @@
-// g++ -std=c++23 tester.cpp lesson.cpp analytics.cpp practice_engine.cpp -o tester
-// ./tester
-// WIP => maybe update runcpp to accept as many files as given?
-
 // standard library headers
 #include <format>
 #include <fstream>
