@@ -1,6 +1,6 @@
 # Requirements for Submission
 - [] GitHub repo link
-- [] README (look at professional repos for inspo: [miniaudio](https://github.com/mackron/miniaudio))
+- [x] README (look at professional repos for inspo: [miniaudio](https://github.com/mackron/miniaudio))
     - Requirements to run program
     - How to build
     - What it does
