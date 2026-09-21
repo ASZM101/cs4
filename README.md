@@ -8,7 +8,7 @@ All of my coursework for Computer Science Independent Study KAP (CS4)
 
 ### Prerequisites
 
-* **Compiler:** `g++` (supports C++17 or later) or `clang++`
+* **Compiler:** `g++` (supports C++20 or later) or `clang++`
 
 * **Build tool:** Terminal / command line interface
 
@@ -20,7 +20,7 @@ All of my coursework for Computer Science Independent Study KAP (CS4)
 
   ```bash
   cd 01-music-calculator
-  g++ -std=c++17 calculator.cpp -o calculator
+  g++ -std=c++20 calculator.cpp -o calculator
   ./calculator
   ```
 
@@ -32,7 +32,7 @@ All of my coursework for Computer Science Independent Study KAP (CS4)
 
   ```bash
   cd 02-health-tracker
-  g++ -std=c++17 tracker.cpp -o tracker
+  g++ -std=c++20 tracker.cpp -o tracker
   ./tracker
   ```
 
@@ -44,7 +44,7 @@ All of my coursework for Computer Science Independent Study KAP (CS4)
 
   ```bash
   cd 03-note-generator
-  g++ -std=c++17 generator.cpp -o generator
+  g++ -std=c++20 generator.cpp -o generator
   ./generator
   ```
 
@@ -56,6 +56,6 @@ All of my coursework for Computer Science Independent Study KAP (CS4)
 
   ```bash
   cd 04-rhythm-tester
-  g++ -std=c++17 tester.cpp lesson.cpp analytics.cpp practice_engine.cpp -o tester
+  g++ -std=c++20 tester.cpp lesson.cpp analytics.cpp practice_engine.cpp -o tester
   ./tester
   ```
