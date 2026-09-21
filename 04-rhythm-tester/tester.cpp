@@ -18,7 +18,7 @@
 
 // func declarations (both actual def AND prototype MUST match)
 std::vector<std::unique_ptr<Lesson>> loadLessons(const std::string& filepath);
-void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>> lessons);
+void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>>& lessons); // lessons must be reference b/c unique_ptr cannot be copied
 
 // display exercise options [=> used for single-line outputs, (!) used for errors]
 int main() {
@@ -26,7 +26,7 @@ int main() {
     std::string input = "";
     std::cout << "Welcome to the Rhythm Tester!\n";
     while (input != std::to_string(lessons.size() + 1)) {
-        std::cout << "Choose one of the following options:\n";
+        std::cout << "\nChoose one of the following options:\n";
         for (size_t i = 0; i < lessons.size(); ++i) {
             std::cout << std::format("[{}] Exercise: {} ({} BPM)\n", (i + 1), lessons[i]->getTitle(), lessons[i]->getBpm()); // exercise #, title, bpm
         }
@@ -67,7 +67,7 @@ std::vector<std::unique_ptr<Lesson>> loadLessons(const std::string& filepath) {
 }
 
 // handle selected menu option based on input
-void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>> lessons) {
+void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>>& lessons) {
     int choice = 0;
     std::string flushBuffer;
     std::getline(std::cin, flushBuffer); // clear remaining input stream
@@ -87,17 +87,17 @@ void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>> lessons)
     std::string feedback = Analytics::feedback(meanError);
     std::cout << "=> Raw timing errors: [";
     for (size_t i = 0; i < errors.size(); ++i) {
-        std::cout << (errors[i] >= 0 ? "+" : "") << static_cast<int>(errors[i]) << "ms"; // signed millisecond error value
+        std::cout << (errors[i] >= 0 ? "+" : "") << static_cast<int>(errors[i]) << " ms"; // signed millisecond error value
         if (i + 1 < errors.size()) std::cout << ", ";
     }
     std::cout << "]\n";
     std::cout << "=> Sorted deviations: [";
     for (size_t i = 0; i < sortedDeviations.size(); ++i) {
-        std::cout << static_cast<int>(sortedDeviations[i]) << "ms";
+        std::cout << static_cast<int>(sortedDeviations[i]) << " ms";
         if (i + 1 < sortedDeviations.size()) std::cout << ", ";
     }
     std::cout << "]\n";
-    std::cout << std::format("=> Mean absolute error:  {} ms\n", meanError);
-    std::cout << std::format("=> Consistency variance: {}\n", (meanError < 20.0 ? "Low (stable rhythm)" : "High (inconsistent rhythm)")); // consistency evaluation rating
+    std::cout << std::format("=> Mean absolute error:  {:.2f} ms\n", meanError);
+    std::cout << std::format("=> Consistency variance: {}\n", (meanError < 150 ? "Low (stable rhythm)" : "High (inconsistent rhythm)")); // consistency evaluation rating
     std::cout << std::format("=> Feedback: {}\n", feedback);
 }

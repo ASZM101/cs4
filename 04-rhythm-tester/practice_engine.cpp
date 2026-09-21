@@ -10,7 +10,7 @@
 // start rhythm test
 std::vector<double> PracticeEngine::runTest(const Lesson& lesson) {
     std::vector<double> errors; // in milliseconds
-    double beatIntervalMs = (60.0 / lesson.getBpm()) * 1000.0; // delay between beats from bpm
+    double beatIntervalMs = (60 / lesson.getBpm()) * 1000; // delay between beats from bpm
     std::cout << "\nPress [ENTER] in sync with the " << lesson.getTotalBeats() << " target metronome beats.\n";
     std::cout << "Press [ENTER] to start...";
     std::string input;
@@ -20,7 +20,7 @@ std::vector<double> PracticeEngine::runTest(const Lesson& lesson) {
     auto startTime = std::chrono::high_resolution_clock::now(); // capture start time
     for (int i = 1; i <= lesson.getTotalBeats(); ++i) {
         double targetBeatTimeMs = i * beatIntervalMs; // expected arrival time for current beat
-        std::cout << "Beat " << i << " Target: " << static_cast<int>(targetBeatTimeMs) << "ms -> Press [ENTER]! ";
+        std::cout << "Beat " << i << " target: " << static_cast<int>(targetBeatTimeMs) << " ms => Press [ENTER]";
         std::cout.flush(); // flush output buffer (so text appears immediately)
         std::getline(std::cin, input); // capture moment user hits enter key
         auto userPressTime = std::chrono::high_resolution_clock::now(); // capture high resolution timestamp of keypress
@@ -28,8 +28,8 @@ std::vector<double> PracticeEngine::runTest(const Lesson& lesson) {
         double actualTimeMs = elapsed.count(); // elapsed duration (as double)
         double error = actualTimeMs - targetBeatTimeMs;
         errors.push_back(error);
-        std::cout << " (Registered at " << static_cast<int>(actualTimeMs) << "ms, Error: "
-                  << (error >= 0 ? "+" : "") << static_cast<int>(error) << "ms)\n";
+        std::cout << " (registered at " << static_cast<int>(actualTimeMs) << " ms, error: "
+                  << (error >= 0 ? "+" : "") << static_cast<int>(error) << " ms)\n";
     }
     return errors;
 }
