@@ -10,7 +10,7 @@
 // start rhythm test
 std::vector<double> PracticeEngine::runTest(const Lesson& lesson) {
     std::vector<double> errors; // in milliseconds
-    double beatIntervalMs = (60 / lesson.getBpm()) * 1000; // delay between beats from bpm
+    double beatIntervalMs = (60.0 / lesson.getBpm()) * 1000.0; // delay between beats from bpm
     std::cout << "\nPress [ENTER] in sync with the " << lesson.getTotalBeats() << " target metronome beats.\n";
     std::cout << "Press [ENTER] to start...";
     std::string input;

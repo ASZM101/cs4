@@ -102,6 +102,6 @@ void handleMenu(std::string input, std::vector<std::unique_ptr<Lesson>>& lessons
     }
     std::cout << "]\n";
     std::cout << std::format("=> Mean absolute error:  {:.2f} ms\n", meanError);
-    std::cout << std::format("=> Consistency variance: {}\n", (meanError < 150 ? "Low (stable rhythm)" : "High (inconsistent rhythm)")); // consistency evaluation rating
+    std::cout << std::format("=> Consistency variance: {}\n", (meanError < 500 ? "Low (stable rhythm)" : "High (inconsistent rhythm)")); // consistency evaluation rating
     std::cout << std::format("=> Feedback: {}\n", feedback);
 }
