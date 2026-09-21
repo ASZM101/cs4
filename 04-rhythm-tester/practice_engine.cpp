@@ -1,8 +1,8 @@
 // standard library headers
-#include <iostream>
 #include <chrono>
-#include <thread>
+#include <iostream>
 #include <string>
+#include <thread>
 
 // custom header files
 #include "practice_engine.hpp"
