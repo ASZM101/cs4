@@ -6,6 +6,30 @@ All of my coursework for Pre-AP Computer Science Independent Study (CS4)
 
 *2026-2027 (12th Grade)*
 
+## Table of Contents
+
+### 1st Grading Period
+
+1. [Music Calculator](https://github.com/ASZM101/cs4#01-music-calculator)
+
+2. [Health Tracker](https://github.com/ASZM101/cs4#02-health-tracker)
+
+3. [Note Generator](https://github.com/ASZM101/cs4#03-note-generator) *(WIP)*
+
+4. [Rhythm Tester](https://github.com/ASZM101/cs4#) *(WIP)*
+
+### 2nd Grading Period
+
+1. [CS Flaschards](https://aszm101.github.io/cs4/2nd-grading-period/01-cs-flashcards/public/flashcards.html) *(WIP)*
+
+2. [Piano Synth](https://aszm101.github.io/cs4/2nd-grading-period/02-piano-synth/public/synth.html) *(WIP)*
+
+3. [Music Trivia](https://aszm101.github.io/cs4/2nd-grading-period/03-music-trivia/public/trivia.html) *(WIP)*
+
+4. [Code Explainer](https://aszm101.github.io/cs4/2nd-grading-period/04-code-explainer/public/explainer.html) *(WIP)*
+
+5. [Pitch Tuner](https://aszm101.github.io/cs4/2nd-grading-period/05-pitch-tuner/public/tuner.html) *(WIP)*
+
 ## 1st Grading Period
 
 ### Prerequisites for All Projects

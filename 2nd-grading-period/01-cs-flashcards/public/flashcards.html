@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS Flashcards | CS4</title>
+    <link rel="stylesheet" href="flashcards.css">
+</head>
+<body>
+    <main>
+        <h1>CS Flashcards</h1>
+
+        <div id="flashcard" class="card">
+            <div id="card-front" class="card-side">
+                <h2>Click to Start</h2>
+            </div>
+            <div id="card-back" class="card-side hidden">
+                <p>Click button below to draw flashcard from API.</p>
+            </div>
+        </div>
+
+        <!-- control panel w/ interaction btns -->
+        <div class="controls">
+            <!-- btn triggers fetch request for random flashcard -->
+            <button id="next-btn">Next Random Card</button>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
