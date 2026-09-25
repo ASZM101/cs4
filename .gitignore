@@ -1,11 +1,5 @@
-# ignore the entire .vscode folder by default
 .vscode/*
-
-# allow specific configuration files to be tracked? (not needed for this repo)
-# !.vscode/extensions.json
-# !.vscode/launch.json
-# !.vscode/tasks.json
-# !.vscode/settings.json
+node_modules/
 
 # files for testing code
 testing/

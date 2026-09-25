@@ -2,60 +2,62 @@
 
 [![wakatime](https://wakatime.com/badge/github/ASZM101/cs4.svg)](https://wakatime.com/badge/github/ASZM101/cs4)
 
-All of my coursework for Computer Science Independent Study KAP (CS4)
+All of my coursework for Pre-AP Computer Science Independent Study (CS4)
 
 *2026-2027 (12th Grade)*
 
-### Prerequisites
+## 1st Grading Period
+
+### Prerequisites for All Projects
 
 * **Compiler:** `g++` (supports C++20 or later) or `clang++`
 
 * **Build tool:** Terminal / command line interface
 
-## `01-music-calculator`
+### `01-music-calculator`
 
 * **What it does:** Calculates audio frequencies, delays, and beat intervals based on user-entered tempo (BPM) and note input
 
 * **How to build:**
 
   ```bash
-  cd 01-music-calculator
+  cd 1st-grading-period/01-music-calculator
   g++ -std=c++20 calculator.cpp -o calculator
   ./calculator
   ```
 
-## `02-health-tracker`
+### `02-health-tracker`
 
 * **What it does:** Tracks daily physical activity metrics, calculates calories burned, and outputs health summary statistics
 
 * **How to build:**
 
   ```bash
-  cd 02-health-tracker
+  cd 1st-grading-period/02-health-tracker
   g++ -std=c++20 tracker.cpp -o tracker
   ./tracker
   ```
 
-## `03-note-generator`
+### `03-note-generator`
 
 * **What it does:** Generates digital sine wave audio data and outputs raw sound samples based on specified frequencies and durations
 
 * **How to build:**
 
   ```bash
-  cd 03-note-generator
+  cd 1st-grading-period/03-note-generator
   g++ -std=c++20 generator.cpp -o generator
   ./generator
   ```
 
-## `04-rhythm-tester`
+### `04-rhythm-tester`
 
 * **What it does:** Reads exercise configurations from external files, tests user keypress timing accuracy against a metronome, and computes performance statistics
 
 * **How to build:**
 
   ```bash
-  cd 04-rhythm-tester
+  cd 1st-grading-period/04-rhythm-tester
   g++ -std=c++20 tester.cpp lesson.cpp analytics.cpp practice_engine.cpp -o tester
   ./tester
   ```
