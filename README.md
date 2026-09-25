@@ -16,7 +16,7 @@ All of my coursework for Pre-AP Computer Science Independent Study (CS4)
 
 3. [Note Generator](https://github.com/ASZM101/cs4#03-note-generator) *(WIP)*
 
-4. [Rhythm Tester](https://github.com/ASZM101/cs4#) *(WIP)*
+4. [Rhythm Tester](https://github.com/ASZM101/cs4#04-rhythm-tester) *(WIP)*
 
 ### 2nd Grading Period
 
