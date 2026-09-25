@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "term": "Variable",
+    "definition": "Named storage location in memory that holds value which can change during program execution"
+  },
+  {
+    "id": 2,
+    "term": "Algorithm",
+    "definition": "Step-by-step set of instructions or rules designed to solve specific problem"
+  },
+  {
+    "id": 3,
+    "term": "Function",
+    "definition": "Reusable block of code designed to perform single specific task"
+  },
+  {
+    "id": 4,
+    "term": "API",
+    "definition": "(Application Programming Interface) Set of rules that allow different software applications to communicate with each other"
+  },
+  {
+    "id": 5,
+    "term": "Recursion",
+    "definition": "Programming technique where function calls itself to solve smaller instances of same problem"
+  }
+]
