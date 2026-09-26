@@ -8,13 +8,13 @@ Pre-AP Computer Science Independent Study coursework
 
 ### 1st Grading Period
 
-1. [Music Calculator](https://github.com/ASZM101/cs4#01-music-calculator)
+1. [Music Calculator](https://aszm101.github.io/cs4/#01-music-calculator)
 
-2. [Health Tracker](https://github.com/ASZM101/cs4#02-health-tracker)
+2. [Health Tracker](https://aszm101.github.io/cs4/#02-health-tracker)
 
-3. [Note Generator](https://github.com/ASZM101/cs4#03-note-generator) *(WIP)*
+3. [Note Generator](https://aszm101.github.io/cs4/#03-note-generator) *(WIP)*
 
-4. [Rhythm Tester](https://github.com/ASZM101/cs4#04-rhythm-tester) *(WIP)*
+4. [Rhythm Tester](https://aszm101.github.io/cs4/#04-rhythm-tester) *(WIP)*
 
 ### 2nd Grading Period
 
