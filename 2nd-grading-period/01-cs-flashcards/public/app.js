@@ -9,7 +9,7 @@ let isFlipped = false; // let > var (more predictable, block-scoped instead of f
 // send fetch request for random card
 async function fetchRandomCard() {
     try {
-        const response = await fetch('/api/cards/random'); // send async HTTP GET request to endpoint
+        const response = await fetch('/api/cards/random'); // send async HTTP GET request to endpoint (must match path in server)
         const cardData = await response.json(); // parse returned JSON response
 
         cardFront.innerHTML = `<h2>${cardData.term}</h2>`;
