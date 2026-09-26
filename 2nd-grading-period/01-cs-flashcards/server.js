@@ -37,3 +37,6 @@ app.get('/', (request, response) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+// export app for Vercel
+module.exports = app;
