@@ -90,6 +90,8 @@ Pre-AP Computer Science Independent Study Coursework
 
 * [**Deployed website**](https://aszm101-cs-flashcards.vercel.app)
 
+* [**Demo video**](https://youtu.be/ve5ZesKccBk)
+
 * **What it does:** A full-stack web application featuring an Express.js REST API that serves AP Computer Science A terms and definitions from JSON data to a flashcard interface
 
 * **How to run locally:**
