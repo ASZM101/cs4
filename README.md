@@ -99,4 +99,4 @@ Pre-AP Computer Science Independent Study Coursework
   node server.js
   ```
 
-  *Then open `http://localhost:3000` in your web browser.*
+  Then open `http://localhost:3000` in your web browser.
