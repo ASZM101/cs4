@@ -1,4 +1,4 @@
-All of my coursework for Pre-AP Computer Science Independent Study
+Pre-AP Computer Science Independent Study coursework
 
 *2026-2027 (12th Grade)*
 
