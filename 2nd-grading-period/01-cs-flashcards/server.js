@@ -33,10 +33,13 @@ app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname, 'public', 'flashcards.html'));
 });
 
-// listening for incoming HTTP network requests
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
-
 // export app for Vercel
 module.exports = app;
+
+// listening for incoming HTTP network requests (if run locally)
+if (require.main === module) { // require.main = entry point file executed by Node, module = current JS file; only true when run from terminal
+    const PORT = process.env.PORT || 3000; // process.env.PORT = environment var PORT set by host provider, 3000 = fallback for when running on PC
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
