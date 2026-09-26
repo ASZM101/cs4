@@ -1,6 +1,6 @@
-Pre-AP Computer Science Independent Study coursework
+Pre-AP Computer Science Independent Study Coursework
 
-*2026-2027 (12th grade)*
+*2026-2027 (12th Grade)*
 
 [![wakatime](https://wakatime.com/badge/github/ASZM101/cs4.svg)](https://wakatime.com/badge/github/ASZM101/cs4)
 
