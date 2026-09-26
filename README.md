@@ -12,21 +12,13 @@ Pre-AP Computer Science Independent Study Coursework
 
 2. [Health Tracker](https://aszm101.github.io/cs4/#02-health-tracker)
 
-3. [Note Generator](https://aszm101.github.io/cs4/#03-note-generator) *(WIP)*
+3. [Note Generator](https://aszm101.github.io/cs4/#03-note-generator)
 
-4. [Rhythm Tester](https://aszm101.github.io/cs4/#04-rhythm-tester) *(WIP)*
+4. [Rhythm Tester](https://aszm101.github.io/cs4/#04-rhythm-tester)
 
 ### 2nd Grading Period
 
-1. [CS Flaschards](https://aszm101.github.io/cs4/2nd-grading-period/01-cs-flashcards/public/flashcards.html) *(WIP)*
-
-2. [Piano Synth](https://aszm101.github.io/cs4/2nd-grading-period/02-piano-synth/public/synth.html) *(WIP)*
-
-3. [Music Trivia](https://aszm101.github.io/cs4/2nd-grading-period/03-music-trivia/public/trivia.html) *(WIP)*
-
-4. [Code Explainer](https://aszm101.github.io/cs4/2nd-grading-period/04-code-explainer/public/explainer.html) *(WIP)*
-
-5. [Pitch Tuner](https://aszm101.github.io/cs4/2nd-grading-period/05-pitch-tuner/public/tuner.html) *(WIP)*
+1. [CS Flaschards](https://aszm101.github.io/cs4/#01-cs-flashcards)
 
 ## 1st Grading Period
 
@@ -83,3 +75,28 @@ Pre-AP Computer Science Independent Study Coursework
   g++ -std=c++20 tester.cpp lesson.cpp analytics.cpp practice_engine.cpp -o tester
   ./tester
   ```
+
+## 2nd Grading Period
+
+### Prerequisites for All Projects
+
+* **Runtime environment:** Node.js (v18 or later)
+
+* **Package manager:** `npm` (included with Node.js)
+
+* **Build tool:** Terminal / command line interface
+
+### `01-cs-flashcards`
+
+* [**Deployed website**](https://aszm101-cs-flashcards.vercel.app)
+
+* **What it does:** A full-stack web application featuring an Express.js REST API that serves AP Computer Science A terms and definitions from JSON data to a flashcard interface
+
+* **How to run locally:**
+  ```bash
+  cd 2nd-grading-period/01-cs-flashcards
+  npm install
+  node server.js
+  ```
+
+  *Then open `http://localhost:3000` in your web browser.*
