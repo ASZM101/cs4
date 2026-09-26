@@ -23,5 +23,80 @@
     "id": 5,
     "term": "Recursion",
     "definition": "Programming technique where function calls itself to solve smaller instances of same problem"
+  },
+  {
+    "id": 6,
+    "term": "Class",
+    "definition": "Blueprint or template used to create objects that defines attributes and behaviors"
+  },
+  {
+    "id": 7,
+    "term": "Object",
+    "definition": "Instance of class that contains state defined by attributes and behavior defined by methods"
+  },
+  {
+    "id": 8,
+    "term": "Inheritance",
+    "definition": "Mechanism where subclass acquires attributes and methods from superclass using extends keyword"
+  },
+  {
+    "id": 9,
+    "term": "Polymorphism",
+    "definition": "Ability of object or method to take on many forms, often via method overriding"
+  },
+  {
+    "id": 10,
+    "term": "Encapsulation",
+    "definition": "Technique of bundling data and methods within class while restricting direct access using private modifier"
+  },
+  {
+    "id": 11,
+    "term": "Array",
+    "definition": "Fixed-size data structure that holds sequence of elements of same type in contiguous memory"
+  },
+  {
+    "id": 12,
+    "term": "ArrayList",
+    "definition": "Re-sizable array implementation in Java that dynamically expands or shrinks as elements are added or removed"
+  },
+  {
+    "id": 13,
+    "term": "Boolean Expression",
+    "definition": "Expression that evaluates to either true or false using logical or relational operators"
+  },
+  {
+    "id": 14,
+    "term": "Constructor",
+    "definition": "Special method invoked when object is instantiated to initialize its instance variables"
+  },
+  {
+    "id": 15,
+    "term": "Method Overloading",
+    "definition": "Defining multiple methods in same class with same name but different parameter lists"
+  },
+  {
+    "id": 16,
+    "term": "Method Overriding",
+    "definition": "Redefining superclass method in subclass with exact same method signature"
+  },
+  {
+    "id": 17,
+    "term": "NullPointerException",
+    "definition": "Runtime error that occurs when attempting to call method or access field on object reference that is null"
+  },
+  {
+    "id": 18,
+    "term": "Iteration",
+    "definition": "Repetitive execution of sequence of code using loops like for, while, or enhanced for"
+  },
+  {
+    "id": 19,
+    "term": "Scope",
+    "definition": "Region of program where variable is defined and accessible"
+  },
+  {
+    "id": 20,
+    "term": "Static",
+    "definition": "Keyword indicating member belongs to class itself rather than to individual instances of class"
   }
 ]
