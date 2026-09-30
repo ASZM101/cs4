@@ -4,7 +4,6 @@ const fs = require('fs'); // to read JSON data
 const path = require('path'); // to handle file dir paths
 
 const app = express();
-const PORT = 3000;
 
 // 1. configure server to serve static files from public dir (route def order matters)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -36,7 +35,7 @@ app.get('/', (request, response) => {
 // export app for Vercel
 module.exports = app;
 
-// listening for incoming HTTP network requests (if run locally)
+// listen for incoming HTTP network requests (if run locally)
 if (require.main === module) { // require.main = entry point file executed by Node, module = current JS file; only true when run from terminal
     const PORT = process.env.PORT || 3000; // process.env.PORT = environment var PORT set by host provider, 3000 = fallback for when running on PC
     app.listen(PORT, () => {
