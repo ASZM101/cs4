@@ -98,9 +98,13 @@ input, select {
     border-radius: 8px;
 }
 
+.key {
+    font-size: 12px;
+}
+
 /* text inside key showing keyboard shortcut */
 .key span {
-    font-size: 10px;
+    font-size: 8px;
     opacity: 0.7;
 }
 
@@ -109,12 +113,12 @@ input, select {
 }
 
 .key.black {
-    width: 30px;
+    width: 50px;
     height: 110px;
     background: #11111b;
     color: #ffffff;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: -25px;
+    margin-right: -25px;
     z-index: 2;
     border-radius: 0 0 3px 3px;
     display: flex;
@@ -124,7 +128,7 @@ input, select {
 }
 
 .key.white {
-    width: 50px;
+    width: 60px;
     height: 180px;
     background: #ffffff;
     color: #11111b;
