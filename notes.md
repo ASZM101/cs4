@@ -12,6 +12,10 @@
     - For explaining code, only focus on one feature you're proud of (something you would show to future employer to convince them to hire you)
     - [x] Focus on actual demo (not code)
     - [ ] Optional: maybe add videos to repo?
+### Submission Template
+- GitHub repository with updated README: https://github.com/ASZM101/cs4
+- Deployed website: 
+- Demo video: 
 
 ## Improvements
 ### CS Flashcards
