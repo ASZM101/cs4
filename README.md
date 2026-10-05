@@ -1,3 +1,5 @@
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
 Pre-AP Computer Science Independent Study Coursework
 
 *2026-2027 (12th Grade)*
