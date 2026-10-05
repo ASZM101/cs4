@@ -107,9 +107,9 @@ Pre-AP Computer Science Independent Study Coursework
 
 ### `02-piano-synth`
 
-* [**Deployed website**](https://aszm101-piano-synth.vercel.app/)
+* [**Deployed website**](https://aszm101-piano-synth.vercel.app)
 
-* [**Demo video**]()
+* [**Demo video**](https://youtu.be/KbhN0nJJ6Ww)
 
 * **What it does:** A browser-based interactive piano synthesizer powered by the Web Audio API and an Express.js backend for creating, playing, and locally saving custom sound presets
 
