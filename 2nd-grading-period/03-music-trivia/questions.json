@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "question": "Which band released the iconic 1973 album 'The Dark Side of the Moon'?",
+    "options": ["The Beatles", "Pink Floyd", "Led Zeppelin", "The Who"],
+    "answer": 1
+  },
+  {
+    "id": 2,
+    "question": "Who is known as the 'King of Pop'?",
+    "options": ["Prince", "Elvis Presley", "Michael Jackson", "Stevie Wonder"],
+    "answer": 2
+  },
+  {
+    "id": 3,
+    "question": "What standard musical key signature has no sharps or flats?",
+    "options": ["G Major", "D Minor", "C Major", "F Major"],
+    "answer": 2
+  },
+  {
+    "id": 4,
+    "question": "Which instrument has 88 keys on a standard model?",
+    "options": ["Organ", "Accordion", "Synthesizer", "Piano"],
+    "answer": 3
+  }
+]
