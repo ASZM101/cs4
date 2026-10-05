@@ -20,6 +20,8 @@ Pre-AP Computer Science Independent Study Coursework
 
 1. [CS Flaschards](https://aszm101.github.io/cs4/#01-cs-flashcards)
 
+2. [Piano Synth](https://aszm101.github.io/cs4/#02-piano-synth)
+
 ## 1st Grading Period
 
 ### Prerequisites for All Projects
@@ -97,6 +99,23 @@ Pre-AP Computer Science Independent Study Coursework
 * **How to run locally:**
   ```bash
   cd 2nd-grading-period/01-cs-flashcards
+  npm install
+  node server.js
+  ```
+
+  Then open `http://localhost:3000` in your web browser.
+
+### `02-piano-synth`
+
+* [**Deployed website**](https://aszm101-piano-synth.vercel.app/)
+
+* [**Demo video**]()
+
+* **What it does:** A browser-based interactive piano synthesizer powered by the Web Audio API and an Express.js backend for creating, playing, and locally saving custom sound presets
+
+* **How to run locally:**
+  ```bash
+  cd 2nd-grading-period/02-piano-synth
   npm install
   node server.js
   ```
