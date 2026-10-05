@@ -49,24 +49,40 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// fetch stored presets from server API
+// load presets from localStorage
 async function loadPresets() {
-    try {
-        const response = await fetch('/api/presets');
-        const presets = await response.json();
-        presetListSelect.innerHTML = '<option value="">Select a preset...</option>'; // reset dropdown list options
+    let presets = [];
+    const localData = localStorage.getItem('piano_presets'); // check browser localStorage
 
-        // append each preset item to dropdown
-        presets.forEach(preset => {
-            const opt = document.createElement('option');
-            opt.value = preset.id;
-            opt.textContent = `${preset.name} (${preset.waveform})`;
-            opt.dataset.preset = JSON.stringify(preset); // create data-preset attribute, convert JS object into JSON string, save to attribute
-            presetListSelect.appendChild(opt);
-        });
-    } catch (err) {
-        console.error('Failed to load presets:', err);
+    if (localData) {
+        presets = JSON.parse(localData); // convert JSON string from localStorage to JS array
+    } else {
+        // fallback to fetching defaults from server if localStorage is empty
+        try {
+            const response = await fetch('/api/presets');
+            if (response.ok) {
+                presets = await response.json();
+                localStorage.setItem('piano_presets', JSON.stringify(presets)); // save default server presets to localStorage
+            }
+        } catch (err) {
+            console.error('Failed to load presets from server, using default fallbacks:', err);
+            presets = [
+                { id: 1, name: 'Default Sine', waveform: 'sine', volume: 0.5 },
+                { id: 2, name: '8-Bit Square', waveform: 'square', volume: 0.3 }
+            ];
+            localStorage.setItem('piano_presets', JSON.stringify(presets));
+        }
     }
+    presetListSelect.innerHTML = '<option value="">Select a preset...</option>'; // reset dropdown list options
+
+    // append each preset item to dropdown
+    presets.forEach(preset => {
+        const opt = document.createElement('option');
+        opt.value = preset.id;
+        opt.textContent = `${preset.name} (${preset.waveform})`;
+        opt.dataset.preset = JSON.stringify(preset); // create data-preset attribute, convert JS object into JSON string, save to attribute
+        presetListSelect.appendChild(opt);
+    });
 }
 
 // update controls when user selects preset from dropdown
@@ -79,38 +95,34 @@ presetListSelect.addEventListener('change', (e) => {
     }
 });
 
-// send new preset to backend API on btn click
-savePresetBtn.addEventListener('click', async () => {
+// save preset to localStorage (instead of sending HTTP POST request to API)
+savePresetBtn.addEventListener('click', () => {
     const name = presetNameInput.value.trim();
     if (!name) {
         alert('Please enter a preset name.');
         return;
     }
 
-    // object for sound settings saved by user
-    const payload = {
+    // read current presets array from localStorage
+    const localData = localStorage.getItem('piano_presets');
+    const presets = localData ? JSON.parse(localData) : [];
+
+    // create new preset object with timestamp ID
+    const newPreset = {
+        id: Date.now(),
         name: name,
         waveform: waveformSelect.value,
         volume: parseFloat(volumeInput.value)
     };
 
-    try {
-        // send HTTP POST request to API endpoint
-        const response = await fetch('/api/presets', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+    // append new preset, save updated array back to localStorage
+    presets.push(newPreset);
+    localStorage.setItem('piano_presets', JSON.stringify(presets));
 
-        // clear input field, refresh dropdown list
-        if (response.ok) {
-            presetNameInput.value = '';
-            await loadPresets();
-            alert('Preset saved successfully!');
-        }
-    } catch (err) {
-        console.error('Failed to save preset:', err);
-    }
+    // clear input field, refresh dropdown list locally
+    presetNameInput.value = '';
+    loadPresets();
+    alert('Preset saved successfully!');
 });
 
 // initialize presets dropdown on script load
