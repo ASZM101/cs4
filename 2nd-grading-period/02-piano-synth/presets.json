@@ -1,14 +1,26 @@
 [
-    {
-      "id": 1,
-      "name": "Classic Sine",
-      "waveform": "sine",
-      "volume": 0.5
-    },
-    {
-      "id": 2,
-      "name": "8-Bit Square",
-      "waveform": "square",
-      "volume": 0.3
-    }
-  ]  
+  {
+    "id": 1,
+    "name": "Classic Sine",
+    "waveform": "sine",
+    "volume": 0.5
+  },
+  {
+    "id": 2,
+    "name": "8-Bit Square",
+    "waveform": "square",
+    "volume": 0.3
+  },
+  {
+    "id": 1791165924993,
+    "name": "Loud Sawtooth (test)",
+    "waveform": "sawtooth",
+    "volume": 1
+  },
+  {
+    "id": 1791165970788,
+    "name": "Soft Triangle (test)",
+    "waveform": "triangle",
+    "volume": 0.19
+  }
+]

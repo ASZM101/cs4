@@ -31,7 +31,7 @@ app.post('/api/presets', (request, response) => {
     const { name, waveform, volume } = request.body; // read client input data from request body
     const presets = loadPresets();
     const newPreset = {
-        id: Date.now(), // unique ID
+        id: Date.now(), // unique ID (milliseconds elapsed from 1970-01-01)
         name: name || 'Custom Preset',
         waveform: waveform || 'sine',
         volume: parseFloat(volume) || 0.5
