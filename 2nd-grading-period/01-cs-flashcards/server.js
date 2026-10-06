@@ -1,6 +1,6 @@
 // import modules
 const express = require('express'); // Express framework
-const fs = require('fs'); // to read JSON data
+const fs = require('fs'); // file system (to read JSON data)
 const path = require('path'); // to handle file dir paths
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 2. read card data from JSON file
 function getCardsData() {
-    const rawData = fs.readFileSync(path.join(__dirname, 'cards.json'), 'utf8');
+    const rawData = fs.readFileSync(path.join(__dirname, 'cards.json'), 'utf8'); // synchronous: halts code until file is completely read, returns data directly
     return JSON.parse(rawData); // convert JSON text into JS object array
 }
 
