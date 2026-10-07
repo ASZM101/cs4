@@ -123,3 +123,20 @@ Pre-AP Computer Science Independent Study Coursework
   ```
 
   Then open `http://localhost:3000` in your web browser.
+
+### `03-music-trivia`
+
+* [**Deployed website**](https://aszm101-music-trivia.vercel.app)
+
+* [**Demo video**]()
+
+* **What it does:** A full-stack music trivia quiz application fetching JSON question sets via an Express REST API, evaluating selections dynamically, and preserving top scores in browser `localStorage`.
+
+* **How to run locally:**
+  ```bash
+  cd 2nd-grading-period/03-music-trivia
+  npm install
+  node server.js
+  ```
+
+  Then open `http://localhost:3000` in your web browser.

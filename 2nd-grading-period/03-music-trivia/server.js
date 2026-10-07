@@ -12,7 +12,9 @@ app.use(express.static(path.join(__dirname, 'public'))); // configure server to 
 app.get('/api/questions', (request, response) => {
     fs.readFile(path.join(__dirname, 'questions.json'), 'utf8', (err, data) => {
         if (err) {
-            return response.status(500).json({ error: 'failed reading question data' });
+            return response.status(500).json({
+                error: 'Failed reading question data'
+            });
         }
         response.json(JSON.parse(data)); // return converted JSON text into JS object array
     });

@@ -38,7 +38,7 @@ app.post('/api/presets', (request, response) => {
     };
     presets.push(newPreset);
     savePresets(presets);
-    response.status(201).json(newPreset); // return created preset as confirmation
+    response.status(201).json(newPreset); // return created preset as confirmation (always set status code and return data)
 });
 
 // route root path to synth.html
