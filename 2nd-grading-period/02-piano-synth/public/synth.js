@@ -125,5 +125,5 @@ savePresetBtn.addEventListener('click', () => {
     alert('Preset saved successfully!');
 });
 
-// initialize presets dropdown on script load
+// initialize presets dropdown when script loads
 loadPresets();

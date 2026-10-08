@@ -1,26 +1,702 @@
 [
   {
     "id": 1,
-    "question": "Which band released the iconic 1973 album 'The Dark Side of the Moon'?",
-    "options": ["The Beatles", "Pink Floyd", "Led Zeppelin", "The Who"],
-    "answer": 1
-  },
-  {
-    "id": 2,
-    "question": "Who is known as the 'King of Pop'?",
-    "options": ["Prince", "Elvis Presley", "Michael Jackson", "Stevie Wonder"],
-    "answer": 2
-  },
-  {
-    "id": 3,
-    "question": "What standard musical key signature has no sharps or flats?",
+    "category": "music-theory",
+    "question": "What standard major key signature contains no sharps or flats?",
     "options": ["G Major", "D Minor", "C Major", "F Major"],
     "answer": 2
   },
   {
+    "id": 2,
+    "category": "music-theory",
+    "question": "Which interval consists of seven semitones (half steps)?",
+    "options": ["Perfect 4th", "Tritone", "Perfect 5th", "Major 6th"],
+    "answer": 2
+  },
+  {
+    "id": 3,
+    "category": "music-theory",
+    "question": "What is the scale degree name for the fifth degree of a major scale?",
+    "options": ["Mediant", "Dominant", "Subdominant", "Leading Tone"],
+    "answer": 1
+  },
+  {
     "id": 4,
-    "question": "Which instrument has 88 keys on a standard model?",
-    "options": ["Organ", "Accordion", "Synthesizer", "Piano"],
+    "category": "music-theory",
+    "question": "Which Roman numeral represents a minor triad built on the second degree of a major key?",
+    "options": ["ii", "II", "ii°", "IIdim"],
+    "answer": 0
+  },
+  {
+    "id": 5,
+    "category": "music-theory",
+    "question": "In voice leading, what interval is strictly prohibited between the same two voices in parallel motion?",
+    "options": ["Parallel 3rds", "Parallel 5ths", "Parallel 6ths", "Parallel 10ths"],
+    "answer": 1
+  },
+  {
+    "id": 6,
+    "category": "music-theory",
+    "question": "What harmonic cadence consists of a V chord moving to a vi chord?",
+    "options": ["Authentic Cadence", "Plagal Cadence", "Half Cadence", "Deceptive Cadence"],
     "answer": 3
+  },
+  {
+    "id": 7,
+    "category": "music-theory",
+    "question": "Which accidentals are raised in a harmonic minor scale compared to a natural minor scale?",
+    "options": ["Raised 6th degree", "Raised 7th degree", "Raised 6th and 7th degrees", "Lowered 2nd degree"],
+    "answer": 1
+  },
+  {
+    "id": 8,
+    "category": "music-theory",
+    "question": "What figured bass symbol indicates a triad in first inversion?",
+    "options": ["6", "6/4", "7", "6/5"],
+    "answer": 0
+  },
+  {
+    "id": 9,
+    "category": "music-theory",
+    "question": "What interval inversion is created when an augmented 4th is inverted?",
+    "options": ["Diminished 5th", "Perfect 5th", "Augmented 5th", "Diminished 4th"],
+    "answer": 0
+  },
+  {
+    "id": 10,
+    "category": "music-theory",
+    "question": "In 6/8 time signature, how many beat units (dotted quarter notes) are in a standard measure?",
+    "options": ["6 beats", "3 beats", "2 beats", "4 beats"],
+    "answer": 2
+  },
+  {
+    "id": 11,
+    "category": "music-theory",
+    "question": "Which triad quality consists of a root, a minor 3rd, and a diminished 5th?",
+    "options": ["Minor triad", "Diminished triad", "Augmented triad", "Major triad"],
+    "answer": 1
+  },
+  {
+    "id": 12,
+    "category": "music-theory",
+    "question": "What is the relative minor key of Eb Major?",
+    "options": ["C minor", "F minor", "G minor", "Bb minor"],
+    "answer": 0
+  },
+  {
+    "id": 13,
+    "category": "music-theory",
+    "question": "Which chord quality is formed by combining a dominant 7th chord with a lowered 5th?",
+    "options": ["Half-diminished 7th", "Fully-diminished 7th", "French 6th", "Italian 6th"],
+    "answer": 2
+  },
+  {
+    "id": 14,
+    "category": "music-theory",
+    "question": "In four-part vocal writing, what is the maximum recommended interval spacing between Soprano and Alto?",
+    "options": ["Perfect 5th", "Octave", "Major 10th", "Unison only"],
+    "answer": 1
+  },
+  {
+    "id": 15,
+    "category": "music-theory",
+    "question": "What is the solfège syllable for the raised 4th scale degree in major?",
+    "options": ["Fi", "Si", "Ri", "Li"],
+    "answer": 0
+  },
+  {
+    "id": 16,
+    "category": "music-theory",
+    "question": "Which cadence resolves from IV to I?",
+    "options": ["Authentic Cadence", "Plagal Cadence", "Half Cadence", "Phrygian Half Cadence"],
+    "answer": 1
+  },
+  {
+    "id": 17,
+    "category": "music-theory",
+    "question": "What inversion of a dominant 7th chord is represented by the figured bass symbol 4/2?",
+    "options": ["Root position", "First inversion", "Second inversion", "Third inversion"],
+    "answer": 3
+  },
+  {
+    "id": 18,
+    "category": "music-theory",
+    "question": "Which meter classification best describes 9/8 time?",
+    "options": ["Simple Duple", "Compound Triple", "Compound Duple", "Simple Triple"],
+    "answer": 1
+  },
+  {
+    "id": 19,
+    "category": "music-theory",
+    "question": "What key is parallel to A Major?",
+    "options": ["F# minor", "A minor", "C# minor", "D Major"],
+    "answer": 1
+  },
+  {
+    "id": 20,
+    "category": "music-theory",
+    "question": "What type of non-harmonic tone is approached by step and left by leap in the opposite direction?",
+    "options": ["Passing tone", "Neighbor tone", "Appoggiatura", "Escape tone"],
+    "answer": 3
+  },
+  {
+    "id": 21,
+    "category": "music-theory",
+    "question": "Which scale mode is constructed by starting on scale degree 2 of a major scale?",
+    "options": ["Dorian", "Phrygian", "Lydian", "Mixolydian"],
+    "answer": 0
+  },
+  {
+    "id": 22,
+    "category": "music-theory",
+    "question": "What scale degree is designated as the 'Submediant'?",
+    "options": ["3rd degree", "4th degree", "6th degree", "7th degree"],
+    "answer": 2
+  },
+  {
+    "id": 23,
+    "category": "music-theory",
+    "question": "Which triad contains two major thirds stacked above the root?",
+    "options": ["Major triad", "Diminished triad", "Augmented triad", "Minor triad"],
+    "answer": 2
+  },
+  {
+    "id": 24,
+    "category": "music-theory",
+    "question": "In a harmonic minor key, what type of seventh chord is built on scale degree vii°?",
+    "options": ["Dominant 7th", "Half-diminished 7th", "Fully-diminished 7th", "Major-major 7th"],
+    "answer": 2
+  },
+  {
+    "id": 25,
+    "category": "music-theory",
+    "question": "What is the circle of fifths key signature for B Major?",
+    "options": ["3 Sharps", "4 Sharps", "5 Sharps", "6 Sharps"],
+    "answer": 2
+  },
+  {
+    "id": 26,
+    "category": "music-theory",
+    "question": "What non-harmonic tone stays on the same pitch from a preparation chord before stepping down to resolve?",
+    "options": ["Suspension", "Retardation", "Pedal Point", "Anticipation"],
+    "answer": 0
+  },
+  {
+    "id": 27,
+    "category": "music-theory",
+    "question": "Which altered chord consists of scale degrees b6, 1, and #4?",
+    "options": ["Italian Augmented 6th", "French Augmented 6th", "German Augmented 6th", "Neapolitan 6th"],
+    "answer": 0
+  },
+  {
+    "id": 28,
+    "category": "music-theory",
+    "question": "What scale degree is modified in a minor key to create a Neapolitan chord?",
+    "options": ["Lowered 2nd degree", "Raised 4th degree", "Lowered 6th degree", "Raised 7th degree"],
+    "answer": 0
+  },
+  {
+    "id": 29,
+    "category": "music-theory",
+    "question": "What is the standard pitch range spacing limit between Bass and Tenor voices in SATB chorale writing?",
+    "options": ["Octave", "Perfect 5th", "No specific limit (can exceed an octave)", "Major 3rd"],
+    "answer": 2
+  },
+  {
+    "id": 30,
+    "category": "music-theory",
+    "question": "Which metric type has beats divided naturally into two equal halves?",
+    "options": ["Compound meter", "Simple meter", "Asymmetrical meter", "Additive meter"],
+    "answer": 1
+  },
+  {
+    "id": 31,
+    "category": "music-theory",
+    "question": "What interval distance exists between scale degree 1 and scale degree b3?",
+    "options": ["Major 2nd", "Minor 3rd", "Major 3rd", "Perfect 4th"],
+    "answer": 1
+  },
+  {
+    "id": 32,
+    "category": "music-theory",
+    "question": "Which cadence ends on a V chord preceded by an iv chord in a minor key with a half-step cadence motion in the bass?",
+    "options": ["Phrygian Half Cadence", "Perfect Authentic Cadence", "Plagal Cadence", "Deceptive Cadence"],
+    "answer": 0
+  },
+  {
+    "id": 33,
+    "category": "music-theory",
+    "question": "What is the name for a 7th chord built with a minor triad and a minor 7th?",
+    "options": ["Major-minor 7th", "Minor-minor 7th", "Half-diminished 7th", "Minor-major 7th"],
+    "answer": 1
+  },
+  {
+    "id": 34,
+    "category": "music-theory",
+    "question": "In functional harmony, which chord is considered part of the Subdominant/Predominant harmonic family?",
+    "options": ["iii", "ii", "vii°", "I"],
+    "answer": 1
+  },
+  {
+    "id": 35,
+    "category": "music-theory",
+    "question": "What clef is primarily used for Alto voice parts and Viola performance?",
+    "options": ["Treble Clef", "Bass Clef", "Alto (C) Clef", "Tenor Clef"],
+    "answer": 2
+  },
+  {
+    "id": 36,
+    "category": "music-theory",
+    "question": "Which voice leading motion occurs when two voices move in the same direction but by different interval distances?",
+    "options": ["Parallel motion", "Similar motion", "Contrary motion", "Oblique motion"],
+    "answer": 1
+  },
+  {
+    "id": 37,
+    "category": "music-theory",
+    "question": "What is the inversion symbol for a major triad with its 5th in the bass?",
+    "options": ["6", "6/4", "6/5", "4/3"],
+    "answer": 1
+  },
+  {
+    "id": 38,
+    "category": "music-theory",
+    "question": "In melodic minor scales, which scale degrees are raised when ascending?",
+    "options": ["6th and 7th", "7th only", "3rd and 6th", "2nd and 4th"],
+    "answer": 0
+  },
+  {
+    "id": 39,
+    "category": "music-theory",
+    "question": "What non-harmonic tone arrives at its target pitch early before the rest of the chord changes?",
+    "options": ["Suspension", "Anticipation", "Appoggiatura", "Neighbor Tone"],
+    "answer": 1
+  },
+  {
+    "id": 40,
+    "category": "music-theory",
+    "question": "Which scale mode features a raised 4th scale degree compared to a standard major scale?",
+    "options": ["Ionian", "Lydian", "Mixolydian", "Aeolian"],
+    "answer": 1
+  },
+  {
+    "id": 41,
+    "category": "music-theory",
+    "question": "What pitch is the enharmonic equivalent of Db?",
+    "options": ["C#", "D#", "Eb", "C"],
+    "answer": 0
+  },
+  {
+    "id": 42,
+    "category": "music-theory",
+    "question": "In a major key, what type of seventh chord is built on scale degree V?",
+    "options": ["Major-Major 7th", "Major-Minor 7th (Dominant)", "Minor-Minor 7th", "Half-Diminished 7th"],
+    "answer": 1
+  },
+  {
+    "id": 43,
+    "category": "music-theory",
+    "question": "What harmonic term describes moving from one key area to another within a composition?",
+    "options": ["Transposition", "Modulation", "Sequencing", "Inversion"],
+    "answer": 1
+  },
+  {
+    "id": 44,
+    "category": "music-theory",
+    "question": "Which key signature contains 4 flats?",
+    "options": ["Bb Major", "Eb Major", "Ab Major", "Db Major"],
+    "answer": 2
+  },
+  {
+    "id": 45,
+    "category": "music-theory",
+    "question": "What is the name for an unaccented non-harmonic tone that steps in one direction between two harmonic tones?",
+    "options": ["Passing Tone", "Appoggiatura", "Suspension", "Escape Tone"],
+    "answer": 0
+  },
+  {
+    "id": 46,
+    "category": "music-theory",
+    "question": "Which chord features scale degrees b6, 1, 2, and #4?",
+    "options": ["Italian 6th", "French 6th", "German 6th", "Neapolitan 6th"],
+    "answer": 1
+  },
+  {
+    "id": 47,
+    "category": "music-theory",
+    "question": "What compositional technique repeats a musical phrase or motif at a higher or lower pitch level?",
+    "options": ["Ostinato", "Sequence", "Augmentation", "Diminution"],
+    "answer": 1
+  },
+  {
+    "id": 48,
+    "category": "music-theory",
+    "question": "What is the term for a cadential extension where the resolution chord is delayed by sustained bass notes?",
+    "options": ["Pedal Point", "Picardy Third", "Tierce de Picardie", "Hemiola"],
+    "answer": 0
+  },
+  {
+    "id": 49,
+    "category": "music-theory",
+    "question": "Which interval inversion transforms a Major 3rd?",
+    "options": ["Minor 6th", "Major 6th", "Perfect 6th", "Diminished 6th"],
+    "answer": 0
+  },
+  {
+    "id": 50,
+    "category": "music-theory",
+    "question": "What is the term for raising the third degree of a minor tonic chord in the final cadence of a piece?",
+    "options": ["Neapolitan cadence", "Picardy Third", "Phrygian cadence", "French sixth"],
+    "answer": 1
+  },
+  {
+    "id": 51,
+    "category": "beatles",
+    "question": "Which Beatles album features the band members walking across a zebra crossing?",
+    "options": ["Let It Be", "Abbey Road", "Revolver", "Help!"],
+    "answer": 1
+  },
+  {
+    "id": 52,
+    "category": "beatles",
+    "question": "Who was the original drummer for the Beatles before Ringo Starr joined?",
+    "options": ["Pete Best", "Stuart Sutcliffe", "Tommy Moore", "Jimmy Nicol"],
+    "answer": 0
+  },
+  {
+    "id": 53,
+    "category": "beatles",
+    "question": "In what year did the Beatles perform on The Ed Sullivan Show for the first time?",
+    "options": ["1962", "1963", "1964", "1965"],
+    "answer": 2
+  },
+  {
+    "id": 54,
+    "category": "beatles",
+    "question": "Which Beatles song was written by George Harrison?",
+    "options": ["Here Comes the Sun", "Hey Jude", "Yesterday", "In My Life"],
+    "answer": 0
+  },
+  {
+    "id": 55,
+    "category": "beatles",
+    "question": "What city in England did the Beatles originate from?",
+    "options": ["Manchester", "London", "Liverpool", "Birmingham"],
+    "answer": 2
+  },
+  {
+    "id": 56,
+    "category": "beatles",
+    "question": "What was the Beatles' debut studio album released in 1963?",
+    "options": ["With the Beatles", "Please Please Me", "A Hard Day's Night", "Help!"],
+    "answer": 1
+  },
+  {
+    "id": 57,
+    "category": "beatles",
+    "question": "Who was known as the 'Fifth Beatle' and served as their longtime record producer?",
+    "options": ["Brian Epstein", "George Martin", "Mal Evans", "Derek Taylor"],
+    "answer": 1
+  },
+  {
+    "id": 58,
+    "category": "beatles",
+    "question": "Which Beatles song holds the record for being covered by more artists than any other song?",
+    "options": ["Yesterday", "Let It Be", "Something", "Eleanor Rigby"],
+    "answer": 0
+  },
+  {
+    "id": 59,
+    "category": "beatles",
+    "question": "What was the title of the Beatles' first feature film released in 1964?",
+    "options": ["Help!", "Yellow Submarine", "A Hard Day's Night", "Magical Mystery Tour"],
+    "answer": 2
+  },
+  {
+    "id": 60,
+    "category": "beatles",
+    "question": "Who was the manager who discovered the Beatles at The Cavern Club?",
+    "options": ["George Martin", "Brian Epstein", "Allen Klein", "Dick James"],
+    "answer": 1
+  },
+  {
+    "id": 61,
+    "category": "beatles",
+    "question": "Which album is officially self-titled but commonly known as the 'White Album'?",
+    "options": ["The Beatles", "Revolver", "Rubber Soul", "Let It Be"],
+    "answer": 0
+  },
+  {
+    "id": 62,
+    "category": "beatles",
+    "question": "What was the name of John Lennon's skiffle group that eventually evolved into the Beatles?",
+    "options": ["The Quarrymen", "The Moondogs", "The Silver Beetles", "The Renegades"],
+    "answer": 0
+  },
+  {
+    "id": 63,
+    "category": "beatles",
+    "question": "Where was the Beatles' last official public concert held in 1969?",
+    "options": ["Shea Stadium", "Candlestick Park", "The Apple Corps Rooftop", "The Cavern Club"],
+    "answer": 2
+  },
+  {
+    "id": 64,
+    "category": "beatles",
+    "question": "Which Beatles single features the famous line 'Na-na-na-nananana, nannana, hey Jude'?",
+    "options": ["Hey Jude", "Let It Be", "Revolution", "Get Back"],
+    "answer": 0
+  },
+  {
+    "id": 65,
+    "category": "beatles",
+    "question": "Which member of the Beatles sang lead vocals on 'Yellow Submarine'?",
+    "options": ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"],
+    "answer": 3
+  },
+  {
+    "id": 66,
+    "category": "beatles",
+    "question": "What instrument did George Harrison introduce to Western pop music on 'Norwegian Wood'?",
+    "options": ["Tabla", "Sitar", "Harmonium", "Ukulele"],
+    "answer": 1
+  },
+  {
+    "id": 67,
+    "category": "beatles",
+    "question": "Which landmark 1967 album features a famous collage of historical figures on its cover?",
+    "options": ["Revolver", "Sgt. Pepper's Lonely Hearts Club Band", "Magical Mystery Tour", "Rubber Soul"],
+    "answer": 1
+  },
+  {
+    "id": 68,
+    "category": "beatles",
+    "question": "What was the first single released by the Beatles in the UK in 1962?",
+    "options": ["Love Me Do", "Please Please Me", "She Loves You", "I Want to Hold Your Hand"],
+    "answer": 0
+  },
+  {
+    "id": 69,
+    "category": "beatles",
+    "question": "Which song was inspired by a drawing made by John Lennon's son Julian?",
+    "options": ["Lucy in the Sky with Diamonds", "Hey Jude", "Strawberry Fields Forever", "Penny Lane"],
+    "answer": 0
+  },
+  {
+    "id": 70,
+    "category": "beatles",
+    "question": "Who played lead guitar on Eric Clapton's guest appearance in 'While My Guitar Gently Weeps'?",
+    "options": ["George Harrison", "Eric Clapton", "John Lennon", "Paul McCartney"],
+    "answer": 1
+  },
+  {
+    "id": 71,
+    "category": "beatles",
+    "question": "Which German city did the Beatles perform in extensively during their early formative years?",
+    "options": ["Berlin", "Munich", "Hamburg", "Frankfurt"],
+    "answer": 2
+  },
+  {
+    "id": 72,
+    "category": "beatles",
+    "question": "What real-life Liverpool street inspired a iconic 1967 Beatles song?",
+    "options": ["Abbey Road", "Penny Lane", "Baker Street", "Blue Jay Way"],
+    "answer": 1
+  },
+  {
+    "id": 73,
+    "category": "beatles",
+    "question": "Which Beatles song features a classical string octet arranged by George Martin?",
+    "options": ["Yesterday", "Eleanor Rigby", "In My Life", "Blackbird"],
+    "answer": 1
+  },
+  {
+    "id": 74,
+    "category": "beatles",
+    "question": "What year did the Beatles officially announce their breakup?",
+    "options": ["1968", "1969", "1970", "1971"],
+    "answer": 2
+  },
+  {
+    "id": 75,
+    "category": "beatles",
+    "question": "Which Beatles track famously contains the lyric 'I am the walrus, they are the walruses'?",
+    "options": ["I Am the Walrus", "Glass Onion", "Strawberry Fields Forever", "Come Together"],
+    "answer": 0
+  },
+  {
+    "id": 76,
+    "category": "beatles",
+    "question": "Who played bass guitar for the Beatles after Stuart Sutcliffe left the group?",
+    "options": ["John Lennon", "Paul McCartney", "George Harrison", "Chas Newby"],
+    "answer": 1
+  },
+  {
+    "id": 77,
+    "category": "beatles",
+    "question": "Which Beatles song was written about Paul McCartney's dog, Martha?",
+    "options": ["Martha My Dear", "Blackbird", "Dear Prudence", "Norwegian Wood"],
+    "answer": 0
+  },
+  {
+    "id": 78,
+    "category": "beatles",
+    "question": "What was the final studio album released by the Beatles prior to their breakup?",
+    "options": ["Abbey Road", "Let It Be", "Yellow Submarine", "Magical Mystery Tour"],
+    "answer": 1
+  },
+  {
+    "id": 79,
+    "category": "beatles",
+    "question": "What venue hosted the famous 1965 concert that broke audience size records for a pop performance?",
+    "options": ["Wembley Stadium", "Shea Stadium", "Madison Square Garden", "The Hollywood Bowl"],
+    "answer": 1
+  },
+  {
+    "id": 80,
+    "category": "beatles",
+    "question": "Which song opens the 1969 album Abbey Road?",
+    "options": ["Come Together", "Something", "Maxwell's Silver Hammer", "Oh! Darling"],
+    "answer": 0
+  },
+  {
+    "id": 81,
+    "category": "beatles",
+    "question": "Who took the famous cover photograph for the 'Abbey Road' album?",
+    "options": ["Astrid Kirchherr", "Iain Macmillan", "Robert Freeman", "Linda McCartney"],
+    "answer": 1
+  },
+  {
+    "id": 82,
+    "category": "beatles",
+    "question": "Which song was written as a tribute to John Lennon's mother?",
+    "options": ["Julia", "Mother", "In My Life", "Across the Universe"],
+    "answer": 0
+  },
+  {
+    "id": 83,
+    "category": "beatles",
+    "question": "What record label was founded by the Beatles in 1968?",
+    "options": ["Parlophone", "Apple Records", "Capitol Records", "EMI"],
+    "answer": 1
+  },
+  {
+    "id": 84,
+    "category": "beatles",
+    "question": "Which Beatles album was recorded in a single 10-hour session, except for previously released singles?",
+    "options": ["Please Please Me", "With the Beatles", "A Hard Day's Night", "Help!"],
+    "answer": 0
+  },
+  {
+    "id": 85,
+    "category": "beatles",
+    "question": "What avant-garde track on the White Album features repetitive tape loops and sound collages?",
+    "options": ["Revolution 9", "Revolution 1", "Helter Skelter", "Wild Honey Pie"],
+    "answer": 0
+  },
+  {
+    "id": 86,
+    "category": "beatles",
+    "question": "Which song did Paul McCartney write to encourage John Lennon's son during his parents' divorce?",
+    "options": ["Hey Jude", "Let It Be", "Fool on the Hill", "Your Mother Should Know"],
+    "answer": 0
+  },
+  {
+    "id": 87,
+    "category": "beatles",
+    "question": "Which song was Ringo Starr's first solo songwriting credit on a Beatles album?",
+    "options": ["Octopus's Garden", "Don't Pass Me By", "With a Little Help from My Friends", "Boys"],
+    "answer": 1
+  },
+  {
+    "id": 88,
+    "category": "beatles",
+    "question": "What song features the lyrics 'Words are flowing out like endless rain into a paper cup'?",
+    "options": ["Across the Universe", "Strawberry Fields Forever", "Nowhere Man", "Lucy in the Sky with Diamonds"],
+    "answer": 0
+  },
+  {
+    "id": 89,
+    "category": "beatles",
+    "question": "Which classical composer's work inspired the piano solo played by George Martin on 'In My Life'?",
+    "options": ["Johann Sebastian Bach", "Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Frederic Chopin"],
+    "answer": 0
+  },
+  {
+    "id": 90,
+    "category": "beatles",
+    "question": "What song was recorded during the 'Get Back' sessions and features keyboardist Billy Preston?",
+    "options": ["Get Back", "Let It Be", "The Long and Winding Road", "Don't Let Me Down"],
+    "answer": 0
+  },
+  {
+    "id": 91,
+    "category": "beatles",
+    "question": "Which Beatles film was an animated musical fantasy featuring their songs?",
+    "options": ["Yellow Submarine", "Help!", "Magical Mystery Tour", "Let It Be"],
+    "answer": 0
+  },
+  {
+    "id": 92,
+    "category": "beatles",
+    "question": "Who was the primary photographer credited with shaping the Beatles' early Hamburg image?",
+    "options": ["Astrid Kirchherr", "Dezo Hoffmann", "Bob Wooler", "Philip Norman"],
+    "answer": 0
+  },
+  {
+    "id": 93,
+    "category": "beatles",
+    "question": "Which song's heavy, aggressive sound is often cited as a precursor to hard rock and heavy metal?",
+    "options": ["Helter Skelter", "Revolution", "I Want You (She's So Heavy)", "Taxman"],
+    "answer": 0
+  },
+  {
+    "id": 94,
+    "category": "beatles",
+    "question": "Which song was inspired by a vintage circus poster John Lennon bought in an antique shop?",
+    "options": ["Being for the Benefit of Mr. Kite!", "Lucy in the Sky with Diamonds", "Strawberry Fields Forever", "Glass Onion"],
+    "answer": 0
+  },
+  {
+    "id": 95,
+    "category": "beatles",
+    "question": "What song on Revolver was inspired by Eastern philosophy and the Tibetan Book of the Dead?",
+    "options": ["Tomorrow Never Knows", "Love You To", "Within You Without You", "Rain"],
+    "answer": 0
+  },
+  {
+    "id": 96,
+    "category": "beatles",
+    "question": "What British honorific title was awarded to all four Beatles in 1965?",
+    "options": ["MBE (Member of the Order of the British Empire)", "Knighthood", "OBE (Officer of the Order of the British Empire)", "Peerage"],
+    "answer": 0
+  },
+  {
+    "id": 97,
+    "category": "beatles",
+    "question": "Which song was written by George Harrison after he was kept waiting in a house in Los Angeles?",
+    "options": ["Blue Jay Way", "While My Guitar Gently Weeps", "Taxman", "I Me Mine"],
+    "answer": 0
+  },
+  {
+    "id": 98,
+    "category": "beatles",
+    "question": "What was the final song recorded together by all four Beatles in January 1970?",
+    "options": ["I Me Mine", "The End", "Let It Be", "Get Back"],
+    "answer": 0
+  },
+  {
+    "id": 99,
+    "category": "beatles",
+    "question": "Which Beatles song features a famous backwards guitar solo played by George Harrison?",
+    "options": ["I'm Only Sleeping", "Taxman", "Strawberry Fields Forever", "Tomorrow Never Knows"],
+    "answer": 0
+  },
+  {
+    "id": 100,
+    "category": "beatles",
+    "question": "Which album cover features the four members wearing matching blue coats and white hats while posing signaling letters?",
+    "options": ["Help!", "Rubber Soul", "A Hard Day's Night", "Please Please Me"],
+    "answer": 0
   }
 ]

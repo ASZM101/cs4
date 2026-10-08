@@ -30,7 +30,7 @@ function loadHighScore() {
     highScoreDisplay.textContent = savedHighScore;
 }
 
-// display current question + choices
+// display current question + options
 function showQuestion() {
     feedbackMsg.textContent = ''; // reset feedback state
     nextBtn.classList.add('hidden');
@@ -38,7 +38,7 @@ function showQuestion() {
     const currentQ = questions[indexCurrentQ];
     questionText.textContent = `${indexCurrentQ + 1}. ${currentQ.question}`;
 
-    // render btn for each choice
+    // render btn for each option
     currentQ.options.forEach((optionText, index) => {
         const btn = document.createElement('button');
         btn.textContent = optionText;
@@ -47,17 +47,17 @@ function showQuestion() {
     });
 }
 
-// evaluate selected answer (immediately after choice is clicked)
+// evaluate selected answer (immediately after option is clicked)
 function checkAnswer(selectedIndex, correctIndex, selectedBtn) {
-    const buttons = optionsContainer.querySelectorAll('button');
-    buttons.forEach(btn => btn.disabled = true); // disable all options after one is selected
+    const btns = optionsContainer.querySelectorAll('button');
+    btns.forEach(btn => btn.disabled = true); // disable all options after one is selected
     if (selectedIndex === correctIndex) {
         score++;
         selectedBtn.classList.add('correct');
         feedbackMsg.textContent = 'Correct!';
     } else {
         selectedBtn.classList.add('incorrect');
-        buttons[correctIndex].classList.add('correct'); // highlight correct answer
+        btns[correctIndex].classList.add('correct'); // highlight correct answer
         feedbackMsg.textContent = 'Wrong answer!';
     }
     nextBtn.classList.remove('hidden');

@@ -39,5 +39,5 @@ function flipCard() {
 flashcard.addEventListener('click', flipCard);
 nextBtn.addEventListener('click', fetchRandomCard);
 
-// load initial flashcard when application loads
+// load initial flashcard when script loads
 fetchRandomCard();
