@@ -520,7 +520,7 @@
   {
     "id": 75,
     "category": "beatles",
-    "question": "Which Beatles track famously contains the lyric 'I am the walrus, they are the walruses'?",
+    "question": "Which Beatles track famously contains the lyric 'I am the egg man, they are the egg men'?",
     "options": ["I Am the Walrus", "Glass Onion", "Strawberry Fields Forever", "Come Together"],
     "answer": 0
   },
@@ -541,7 +541,7 @@
   {
     "id": 78,
     "category": "beatles",
-    "question": "What was the final studio album released by the Beatles prior to their breakup?",
+    "question": "What was the final studio album released by the Beatles?",
     "options": ["Abbey Road", "Let It Be", "Yellow Submarine", "Magical Mystery Tour"],
     "answer": 1
   },
@@ -681,9 +681,9 @@
   {
     "id": 98,
     "category": "beatles",
-    "question": "What was the final song recorded together by all four Beatles in January 1970?",
+    "question": "What was the final song recorded together by all four Beatles in August 1969?",
     "options": ["I Me Mine", "The End", "Let It Be", "Get Back"],
-    "answer": 0
+    "answer": 1
   },
   {
     "id": 99,

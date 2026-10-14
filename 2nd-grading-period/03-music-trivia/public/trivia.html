@@ -15,7 +15,29 @@
             <span>High Score: <strong id="high-score">0</strong></span>
         </div>
 
-        <div id="quiz-card">
+        <!-- config menu -->
+        <div id="setup-card">
+            <!-- category dropdown -->
+            <div class="setup-group">
+                <label for="category-select">Category:</label>
+                <select id="category-select">
+                    <option value="all">All Topics</option>
+                    <option value="music-theory">AP Music Theory</option>
+                    <option value="beatles">Beatles Trivia</option>
+                </select>
+            </div>
+
+            <!-- question count slider -->
+            <div class="setup-group">
+                <label for="question-slider">Questions: <span id="slider-val">5</span></label>
+                <input type="range" id="question-slider" min="1" max="50" value="5">
+            </div>
+
+            <button id="start-btn">Start Quiz</button>
+        </div>
+
+        <!-- question + options -->
+        <div id="quiz-card" class="hidden">
             <h2 id="question-text">Loading question...</h2>
             <div id="options-container" class="options-grid"></div>
             <p id="feedback-msg" class="feedback"></p>

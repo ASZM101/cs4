@@ -130,7 +130,7 @@ Pre-AP Computer Science Independent Study Coursework
 
 * [**Demo video**]()
 
-* **What it does:** A full-stack music trivia quiz application fetching JSON question sets via an Express REST API, evaluating selections dynamically, and preserving top scores in browser `localStorage`.
+* **What it does:** A full-stack music trivia app powered by an Express REST API that offers category selection, customizable randomized quiz lengths, and preserving top scores in browser `localStorage`.
 
 * **How to run locally:**
   ```bash
