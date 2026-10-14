@@ -82,7 +82,7 @@ button.incorrect {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .options-grid {
