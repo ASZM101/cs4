@@ -5,7 +5,7 @@ const path = require('path'); // to handle file dir paths
 
 const app = express();
 
-app.use(express.json()); // parse incoming JSON data from frontend (not read-only)
+app.use(express.json()); // parse incoming JSON data for POST requests from frontend (not read-only)
 app.use(express.static(path.join(__dirname, 'public'))); // configure server to serve static files from public dir (route def order matters)
 
 // load presets from JSON file
