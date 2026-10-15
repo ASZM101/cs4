@@ -24,6 +24,8 @@ Pre-AP Computer Science Independent Study Coursework
 
 2. [Piano Synth](https://aszm101.github.io/cs4/#02-piano-synth)
 
+3. [Music Trivia](https://aszm101.github.io/cs4/#03-music-trivia)
+
 ## 1st Grading Period
 
 ### Prerequisites for All Projects
@@ -128,9 +130,9 @@ Pre-AP Computer Science Independent Study Coursework
 
 * [**Deployed website**](https://aszm101-music-trivia.vercel.app)
 
-* [**Demo video**]()
+* [**Demo video**](https://youtu.be/vEwmVZaFrtw)
 
-* **What it does:** A full-stack music trivia app powered by an Express REST API that offers category selection, customizable randomized quiz lengths, and preserving top scores in browser `localStorage`.
+* **What it does:** A full-stack music trivia app powered by an Express REST API that offers category selection, customizable randomized quiz lengths, and preserving top scores in browser `localStorage`
 
 * **How to run locally:**
   ```bash
