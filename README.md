@@ -26,6 +26,10 @@ Pre-AP Computer Science Independent Study Coursework
 
 3. [Music Trivia](https://aszm101.github.io/cs4/#03-music-trivia)
 
+### 3rd Grading Period
+
+1. [Vocab Builder](https://aszm101.github.io/cs4/#01-vocab-builder)
+
 ## 1st Grading Period
 
 ### Prerequisites for All Projects
@@ -142,3 +146,28 @@ Pre-AP Computer Science Independent Study Coursework
   ```
 
   Then open `http://localhost:3000` in your web browser.
+
+## 3rd Grading Period
+
+### Prerequisites for All Projects
+
+- **Runtime environment:** Node.js (v18 or later)
+
+- **Package manager:** `npm` (included with Node.js)
+
+- **Build tool:** Terminal / command line interface
+
+### `01-vocab-builder`
+
+- [**Deployed website**](https://aszm101-vocab-builder.vercel.app)
+
+- **What it does:** A full-stack academic vocabulary study tool featuring an Express.js backend API proxy that queries [Free Dictionary API](https://dictionaryapi.dev/) to display exact definitions, parts of speech, examples, and phonetic spellings
+
+- **How to run locally:**
+  ```bash
+  cd 3rd-grading-period/01-vocab-builder
+  npm install
+  node server.js
+  ```
+
+Then open http://localhost:3000 in your web browser.
