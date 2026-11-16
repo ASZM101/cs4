@@ -36,6 +36,29 @@ async function fetchWordData() {
 function renderWordData(data) {
     displayWord.textContent = data["word"];
 
+    // get phonetic spelling (if available)
+    let phoneticText = '';
+    if (data["phonetic"]) {
+        phoneticText = data["phonetic"];
+    } else if (data["phonetics"]) {
+        phoneticText = data["phonetics"].at(-1)["text"];
+    }
+    displayPhonetic.textContent = phoneticText ? `${phoneticText}` : '';
+
+    // // get definitions
+    definitionsList.innerHTML = '';
+    if (data["meanings"] && data["meanings"].length > 0) {
+        data["meanings"].forEach(res => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>(${res["partOfSpeech"]})</strong> ${res["definitions"][0]["definition"]}`;
+            definitionsList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement('li');
+        li.textContent = 'no definitions available';
+        definitionsList.appendChild(li);
+    }
+
     // show results card
     resultsCard.classList.remove('hidden');
 }
